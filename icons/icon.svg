@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- dg-echarts icon: an original pie chart motif (not the ECharts logo). -->
+  <rect x="4" y="4" width="120" height="120" rx="26" fill="#0b7285"/>
+  <g transform="translate(3 -3)" stroke="#0b7285" stroke-width="3" stroke-linejoin="round">
+    <path d="M58 70 L98 70 A40 40 0 0 1 23.36 90 Z" fill="#ffffff"/>
+    <path d="M58 70 L23.36 90 A40 40 0 0 1 58 30 Z" fill="#ff8787"/>
+    <path d="M64 64 L64 24 A40 40 0 0 1 104 64 Z" fill="#ffd43b"/>
+  </g>
+</svg>

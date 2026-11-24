@@ -1,0 +1,255 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: dg-echarts\n"
+"Report-Msgid-Bugs-To: https://github.com/akiratamcat/joplin-plugin-dg-echarts/issues\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/actions.ts:116
+msgid "Saved: {path}"
+msgstr ""
+
+#: src/actions.ts:119
+msgid "Could not save: {error}"
+msgstr ""
+
+#: src/actions.ts:71
+msgid "Copied the SVG."
+msgstr ""
+
+#: src/actions.ts:71
+msgid "Copied the chart source."
+msgstr ""
+
+#: src/actions.ts:74
+#: src/actions.ts:87
+msgid "Could not copy: {error}"
+msgstr ""
+
+#: src/actions.ts:84
+msgid "Copied the image (PNG)."
+msgstr ""
+
+#: src/contentScript/input.ts:37
+msgid "The chart is too large ({length} characters; the limit is {limit})."
+msgstr ""
+
+#: src/contentScript/input.ts:39
+msgid "The block is empty."
+msgstr ""
+
+#: src/contentScript/input.ts:62
+msgid "The chart must be an object ({ ... }) with ECharts options."
+msgstr ""
+
+#: src/contentScript/inputGuard.ts:47
+msgid "The chart is nested too deeply (more than {depth} levels)."
+msgstr ""
+
+#: src/contentScript/inputGuard.ts:63
+msgid "Maps (geo, series type \"map\") are not supported."
+msgstr ""
+
+#: src/contentScript/markdownItPlugin.ts:102
+msgid "The chart cannot be drawn here (no window to sanitise the output)."
+msgstr ""
+
+#: src/contentScript/markdownItPlugin.ts:106
+msgid "The ECharts engine could not be loaded: {message}"
+msgstr ""
+
+#: src/contentScript/markdownItPlugin.ts:111
+msgid "ECharts could not draw the chart: {message}"
+msgstr ""
+
+#: src/contentScript/markdownItPlugin.ts:182
+msgid "The chart could not be drawn: {message}"
+msgstr ""
+
+#: src/contentScript/markdownItPlugin.ts:62
+msgid "Line {line}"
+msgstr ""
+
+#: src/contentScript/markdownItPlugin.ts:71
+#. Name of a chart for screen readers. "ECharts" is not translated.
+msgid "ECharts chart"
+msgstr ""
+
+#: src/contentScript/markdownItPlugin.ts:76
+#. Name of a chart for screen readers; {title} is the title of the chart.
+msgid "ECharts chart: {title}"
+msgstr ""
+
+#: src/contentScript/markdownItPlugin.ts:86
+msgid "JSON syntax error: {message}"
+msgstr ""
+
+#: src/contentScript/markdownItPlugin.ts:87
+msgid "YAML syntax error: {message}"
+msgstr ""
+
+#: src/contentScript/markdownItPlugin.ts:96
+msgid "Images are not shown (the plugin does not load images)."
+msgstr ""
+
+#: src/contentScript/optionCheck.ts:55
+msgid "series[{index}] is not an object."
+msgstr ""
+
+#: src/contentScript/optionCheck.ts:61
+msgid "series[{index}]: unknown chart type: {type}"
+msgstr ""
+
+#: src/contentScript/optionCheck.ts:66
+msgid "series[{index}].data must be an array."
+msgstr ""
+
+#: src/contentScript/optionCheck.ts:73
+#. xAxis and yAxis are ECharts option names. Do not translate them.
+msgid "Charts such as bar, line and scatter charts need both xAxis and yAxis."
+msgstr ""
+
+#: src/contentScript/optionCheck.ts:79
+msgid "There is nothing to draw (no series of a known chart type)."
+msgstr ""
+
+#: src/contentScript/toolbar.ts:50
+msgid "Chart tools"
+msgstr ""
+
+#: src/contentScript/toolbar.ts:52
+msgid "Copy SVG"
+msgstr ""
+
+#: src/contentScript/toolbar.ts:53
+msgid "Copy PNG"
+msgstr ""
+
+#: src/contentScript/toolbar.ts:54
+msgid "Save SVG"
+msgstr ""
+
+#: src/contentScript/toolbar.ts:55
+msgid "Save PNG"
+msgstr ""
+
+#: src/contentScript/toolbar.ts:56
+msgid "Copy the chart source"
+msgstr ""
+
+#: src/index.ts:64
+msgid "Choose a folder to save the chart in"
+msgstr ""
+
+#: src/settings.ts:101
+msgid "Colour ECharts blocks in the Markdown editor"
+msgstr ""
+
+#: src/settings.ts:102
+msgid "Keys, strings, numbers and comments of JSON and YAML get colours."
+msgstr ""
+
+#: src/settings.ts:110
+msgid "Extra language names"
+msgstr ""
+
+#: src/settings.ts:112
+#. "chart, json" and "echarts" are language names of code blocks. Keep them as they are.
+msgid "Comma-separated, for example \"chart, json\". \"echarts\" always works."
+msgstr ""
+
+#: src/settings.ts:122
+msgid "Largest chart (characters)"
+msgstr ""
+
+#: src/settings.ts:123
+msgid "Larger blocks are not drawn. While a chart is drawn, the note waits."
+msgstr ""
+
+#: src/settings.ts:133
+msgid "Number of charts kept in the cache"
+msgstr ""
+
+#: src/settings.ts:146
+msgid "Bundled third-party software"
+msgstr ""
+
+#: src/settings.ts:147
+msgid "Open the list to see the name, version, license and website of each component. Choosing an item changes nothing. The full license texts are in THIRD_PARTY_NOTICES.md in the plugin package."
+msgstr ""
+
+#: src/settings.ts:17
+#. Description at the top of the settings section. Keep ```echarts as it is.
+msgid "A plugin that renders Apache ECharts charts. The Apache ECharts rendering engine is built in, and the plugin makes no network connections to the outside. Write the data in ```echarts code blocks."
+msgstr ""
+
+#: src/settings.ts:30
+msgid "Auto (follow Joplin)"
+msgstr ""
+
+#: src/settings.ts:32
+#. A chart theme with light colours.
+msgid "Light"
+msgstr ""
+
+#: src/settings.ts:34
+#. A chart theme with dark colours.
+msgid "Dark"
+msgstr ""
+
+#: src/settings.ts:36
+msgid "Chart theme"
+msgstr ""
+
+#: src/settings.ts:43
+msgid "Transparent chart background"
+msgstr ""
+
+#: src/settings.ts:44
+msgid "When a chart uses another theme than the page (for example theme=dark on a light page), its background is always painted."
+msgstr ""
+
+#: src/settings.ts:54
+msgid "Chart height (px)"
+msgstr ""
+
+#: src/settings.ts:56
+#. Keep height= and ```echarts height=300 as they are.
+msgid "A block can set its own height with height=, for example ```echarts height=300."
+msgstr ""
+
+#: src/settings.ts:66
+msgid "Chart width (px)"
+msgstr ""
+
+#: src/settings.ts:68
+#. Keep width= as it is.
+msgid "Charts are drawn at this width and shrink in a narrower pane; they are never stretched. A block can set its own width with width=."
+msgstr ""
+
+#: src/settings.ts:75
+msgid "Match the font size of the note"
+msgstr ""
+
+#: src/settings.ts:76
+msgid "Chart texts use the font size of the note text (15px in the desktop app) instead of 12px. Titles and other texts keep their proportions."
+msgstr ""
+
+#: src/settings.ts:85
+msgid "Smallest font size (px)"
+msgstr ""
+
+#: src/settings.ts:86
+msgid "0 turns it off. Smaller texts, including sizes written in a chart, are enlarged before the chart is laid out. A chart that shrinks in a narrow pane shows smaller texts."
+msgstr ""
+
+#: src/settings.ts:93
+msgid "Show the chart toolbar"
+msgstr ""
+
+#: src/settings.ts:94
+msgid "Buttons to copy and save the chart (SVG, PNG) and to copy its source, shown when the mouse is over a chart."
+msgstr ""

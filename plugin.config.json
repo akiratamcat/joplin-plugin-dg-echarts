@@ -1,0 +1,9 @@
+{
+	"extraScripts": [
+		"contentScript/markdownItPlugin.ts",
+		"contentScript/codeMirrorPlugin.ts"
+	],
+	"webpackOverrides": {
+		"node": { "__dirname": false, "__filename": false }
+	}
+}

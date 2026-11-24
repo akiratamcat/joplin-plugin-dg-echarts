@@ -1,0 +1,19 @@
+{
+	"description": "Places in the plugin code and the bundled engine that match a pattern of tests/helpers/networkPatterns.ts, with the reason why they make no network request (design 12, 16). A new match, or a different count, fails tests/network.test.ts and must be checked again.",
+	"files": {
+		"vendor/echarts/echarts.min.js": {
+			"createElement": {
+				"count": 1,
+				"reason": "The save-as-image feature of the toolbox (an iframe for old Internet Explorer). The input guard removes every toolbox option (inputGuard.ts), and the chart is a static SVG without the toolbox."
+			},
+			"newImage": {
+				"count": 1,
+				"reason": "zrender's loadImage(), used for image patterns and image symbols while the SVG is built. The input guard removes every 'image' key and every 'image://' string first (inputGuard.ts, design 12), so no URL reaches it."
+			},
+			"newFunction": {
+				"count": 1,
+				"reason": "Fallback parser of GeoJSON for maps, used only when JSON.parse is missing. Maps are refused by the input guard (inputGuard.ts) before the engine runs."
+			}
+		}
+	}
+}

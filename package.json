@@ -1,0 +1,72 @@
+{
+  "name": "joplin-plugin-dg-echarts",
+  "version": "1.0.0",
+  "description": "Render Apache ECharts charts in Joplin with a bundled engine. No external server, no network access. / Apache ECharts のグラフを、描画エンジン内蔵・外部通信なしで Joplin に表示します。",
+  "author": "akira tamcat",
+  "license": "MIT",
+  "homepage": "https://github.com/akiratamcat/joplin-plugin-dg-echarts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akiratamcat/joplin-plugin-dg-echarts.git"
+  },
+  "keywords": [
+    "joplin-plugin",
+    "echarts",
+    "chart",
+    "graph",
+    "offline"
+  ],
+  "files": [
+    "publish",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "THIRD_PARTY_NOTICES.ja.md"
+  ],
+  "scripts": {
+    "dist": "npm run i18n:compile && webpack --env joplin-plugin-config=buildMain && webpack --env joplin-plugin-config=buildExtraScripts && webpack --env joplin-plugin-config=createArchive",
+    "updateVersion": "webpack --env joplin-plugin-config=updateVersion",
+    "update": "npm install -g generator-joplin && yo joplin --node-package-manager npm --update --force",
+    "test": "npm run test:unit && npm run test:render",
+    "test:unit": "npm run i18n:compile && npm run i18n:check && npm run licenses:check && npm run docs:check && jest",
+    "test:render": "npm run dist && jest -c jest.render.config.js",
+    "lint": "eslint src tests",
+    "typecheck": "npm run i18n:compile && tsc --noEmit -p tsconfig.json",
+    "i18n:extract": "node scripts/i18n-extract.mjs",
+    "i18n:compile": "node scripts/i18n-compile.mjs",
+    "i18n:check": "node scripts/i18n-check.mjs",
+    "notices": "node scripts/notices.mjs",
+    "licenses:check": "node scripts/check-licenses.mjs",
+    "check:publish": "node scripts/check-publish.mjs",
+    "icons": "node scripts/icons.mjs",
+    "docs": "node scripts/bilingual.mjs",
+    "docs:check": "node scripts/bilingual.mjs --check"
+  },
+  "dependencies": {
+    "dompurify": "3.4.17",
+    "yaml": "2.9.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "@types/jest": "29.5.14",
+    "@types/markdown-it": "14.1.2",
+    "@types/node": "18.19.68",
+    "chalk": "4.1.2",
+    "copy-webpack-plugin": "14.0.0",
+    "eslint": "9.39.5",
+    "fs-extra": "10.1.0",
+    "gettext-parser": "9.1.1",
+    "glob": "8.1.0",
+    "jest": "29.7.0",
+    "jest-environment-jsdom": "29.7.0",
+    "markdown-it": "14.3.3",
+    "playwright-core": "1.64.1",
+    "tar": "7.5.22",
+    "ts-jest": "29.2.5",
+    "ts-loader": "9.5.1",
+    "typescript": "4.9.5",
+    "typescript-eslint": "8.73.0",
+    "webpack": "5.112.2",
+    "webpack-cli": "4.10.0"
+  }
+}

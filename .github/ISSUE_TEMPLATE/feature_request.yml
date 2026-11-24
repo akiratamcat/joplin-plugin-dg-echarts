@@ -1,0 +1,20 @@
+name: Feature request / 機能の要望
+description: An idea for a new feature or an improvement. / 新しい機能や改善のアイデア。
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like? / どんな機能がほしいですか
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why is it useful? / なぜ役に立ちますか
+      description: What are you trying to do? An example chart helps. / 何をしたいですか。グラフの例があると助かります。
+  - type: markdown
+    attributes:
+      value: |
+        The plugin makes no network requests, so features that need a server or the internet are out of scope.
+        本プラグインはネットワーク通信をしないので、サーバーやインターネットが要る機能は対象外です。

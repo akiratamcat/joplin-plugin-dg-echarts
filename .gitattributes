@@ -1,3 +1,5 @@
 # Vendored third-party files must stay byte-for-byte identical (SHA-256 in
 # vendor/echarts/SOURCE.md), so Git must not convert their line endings.
 vendor/** -text
+# Files saved during the manual tests are kept as they were saved.
+tests/evidence/** -text

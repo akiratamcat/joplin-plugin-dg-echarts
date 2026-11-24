@@ -1,0 +1,53 @@
+# CI (design 21; from dg-plantuml): lint, type check, tests and the plugin package.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Lint, type check, audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      # Packages that end up in the plugin must have no known vulnerabilities.
+      - run: npm audit --omit=dev --audit-level=moderate
+
+  test:
+    name: Tests (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        # Rendering differs most by OS (fonts), so the tests run on all three (design 16).
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:unit
+      # Builds the plugin, then renders charts in the runner's Google Chrome
+      # with the network blocked (design 16).
+      - run: npm run test:render
+      - name: Keep the plugin package
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v7
+        with:
+          name: plugin-package
+          path: publish/
+          if-no-files-found: error

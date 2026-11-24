@@ -1,0 +1,255 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: dg-echarts\n"
+"Report-Msgid-Bugs-To: https://github.com/akiratamcat/joplin-plugin-dg-echarts/issues\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/actions.ts:116
+msgid "Saved: {path}"
+msgstr "已保存：{path}"
+
+#: src/actions.ts:119
+msgid "Could not save: {error}"
+msgstr "无法保存：{error}"
+
+#: src/actions.ts:71
+msgid "Copied the SVG."
+msgstr "已复制 SVG。"
+
+#: src/actions.ts:71
+msgid "Copied the chart source."
+msgstr "已复制图表源代码。"
+
+#: src/actions.ts:74
+#: src/actions.ts:87
+msgid "Could not copy: {error}"
+msgstr "无法复制：{error}"
+
+#: src/actions.ts:84
+msgid "Copied the image (PNG)."
+msgstr "已复制图片（PNG）。"
+
+#: src/contentScript/input.ts:37
+msgid "The chart is too large ({length} characters; the limit is {limit})."
+msgstr "图表过大（{length} 个字符；上限为 {limit}）。"
+
+#: src/contentScript/input.ts:39
+msgid "The block is empty."
+msgstr "代码块为空。"
+
+#: src/contentScript/input.ts:62
+msgid "The chart must be an object ({ ... }) with ECharts options."
+msgstr "图表必须是包含 ECharts 选项的对象（{ ... }）。"
+
+#: src/contentScript/inputGuard.ts:47
+msgid "The chart is nested too deeply (more than {depth} levels)."
+msgstr "图表嵌套过深（超过 {depth} 层）。"
+
+#: src/contentScript/inputGuard.ts:63
+msgid "Maps (geo, series type \"map\") are not supported."
+msgstr "不支持地图（geo、系列类型 \"map\"）。"
+
+#: src/contentScript/markdownItPlugin.ts:102
+msgid "The chart cannot be drawn here (no window to sanitise the output)."
+msgstr "无法在此处绘制图表（没有用于净化输出的 window）。"
+
+#: src/contentScript/markdownItPlugin.ts:106
+msgid "The ECharts engine could not be loaded: {message}"
+msgstr "无法加载 ECharts 引擎：{message}"
+
+#: src/contentScript/markdownItPlugin.ts:111
+msgid "ECharts could not draw the chart: {message}"
+msgstr "ECharts 无法绘制图表：{message}"
+
+#: src/contentScript/markdownItPlugin.ts:182
+msgid "The chart could not be drawn: {message}"
+msgstr "无法绘制图表：{message}"
+
+#: src/contentScript/markdownItPlugin.ts:62
+msgid "Line {line}"
+msgstr "第 {line} 行"
+
+#: src/contentScript/markdownItPlugin.ts:71
+#. Name of a chart for screen readers. "ECharts" is not translated.
+msgid "ECharts chart"
+msgstr "ECharts 图表"
+
+#: src/contentScript/markdownItPlugin.ts:76
+#. Name of a chart for screen readers; {title} is the title of the chart.
+msgid "ECharts chart: {title}"
+msgstr "ECharts 图表：{title}"
+
+#: src/contentScript/markdownItPlugin.ts:86
+msgid "JSON syntax error: {message}"
+msgstr "JSON 语法错误：{message}"
+
+#: src/contentScript/markdownItPlugin.ts:87
+msgid "YAML syntax error: {message}"
+msgstr "YAML 语法错误：{message}"
+
+#: src/contentScript/markdownItPlugin.ts:96
+msgid "Images are not shown (the plugin does not load images)."
+msgstr "不显示图片（本插件不加载图片）。"
+
+#: src/contentScript/optionCheck.ts:55
+msgid "series[{index}] is not an object."
+msgstr "series[{index}] 不是对象。"
+
+#: src/contentScript/optionCheck.ts:61
+msgid "series[{index}]: unknown chart type: {type}"
+msgstr "series[{index}]：未知的图表类型：{type}"
+
+#: src/contentScript/optionCheck.ts:66
+msgid "series[{index}].data must be an array."
+msgstr "series[{index}].data 必须是数组。"
+
+#: src/contentScript/optionCheck.ts:73
+#. xAxis and yAxis are ECharts option names. Do not translate them.
+msgid "Charts such as bar, line and scatter charts need both xAxis and yAxis."
+msgstr "柱状图、折线图、散点图等图表需要同时设置 xAxis 和 yAxis。"
+
+#: src/contentScript/optionCheck.ts:79
+msgid "There is nothing to draw (no series of a known chart type)."
+msgstr "没有可绘制的内容（没有已知类型的系列）。"
+
+#: src/contentScript/toolbar.ts:50
+msgid "Chart tools"
+msgstr "图表工具"
+
+#: src/contentScript/toolbar.ts:52
+msgid "Copy SVG"
+msgstr "复制 SVG"
+
+#: src/contentScript/toolbar.ts:53
+msgid "Copy PNG"
+msgstr "复制 PNG"
+
+#: src/contentScript/toolbar.ts:54
+msgid "Save SVG"
+msgstr "保存 SVG"
+
+#: src/contentScript/toolbar.ts:55
+msgid "Save PNG"
+msgstr "保存 PNG"
+
+#: src/contentScript/toolbar.ts:56
+msgid "Copy the chart source"
+msgstr "复制图表源代码"
+
+#: src/index.ts:64
+msgid "Choose a folder to save the chart in"
+msgstr "选择保存图表的文件夹"
+
+#: src/settings.ts:101
+msgid "Colour ECharts blocks in the Markdown editor"
+msgstr "在 Markdown 编辑器中为 ECharts 代码块着色"
+
+#: src/settings.ts:102
+msgid "Keys, strings, numbers and comments of JSON and YAML get colours."
+msgstr "为 JSON 和 YAML 的键、字符串、数字和注释着色。"
+
+#: src/settings.ts:110
+msgid "Extra language names"
+msgstr "额外的语言名称"
+
+#: src/settings.ts:112
+#. "chart, json" and "echarts" are language names of code blocks. Keep them as they are.
+msgid "Comma-separated, for example \"chart, json\". \"echarts\" always works."
+msgstr "以逗号分隔，例如 \"chart, json\"。\"echarts\" 始终可用。"
+
+#: src/settings.ts:122
+msgid "Largest chart (characters)"
+msgstr "图表的最大长度（字符数）"
+
+#: src/settings.ts:123
+msgid "Larger blocks are not drawn. While a chart is drawn, the note waits."
+msgstr "不绘制超过此大小的代码块。绘制图表期间，笔记会等待。"
+
+#: src/settings.ts:133
+msgid "Number of charts kept in the cache"
+msgstr "缓存中保留的图表数量"
+
+#: src/settings.ts:146
+msgid "Bundled third-party software"
+msgstr "内置的第三方软件"
+
+#: src/settings.ts:147
+msgid "Open the list to see the name, version, license and website of each component. Choosing an item changes nothing. The full license texts are in THIRD_PARTY_NOTICES.md in the plugin package."
+msgstr "打开列表可查看每个组件的名称、版本、许可证和网站。选择某一项不会改变任何内容。完整的许可证文本位于插件包中的 THIRD_PARTY_NOTICES.md。"
+
+#: src/settings.ts:17
+#. Description at the top of the settings section. Keep ```echarts as it is.
+msgid "A plugin that renders Apache ECharts charts. The Apache ECharts rendering engine is built in, and the plugin makes no network connections to the outside. Write the data in ```echarts code blocks."
+msgstr "用于绘制 Apache ECharts 图表的插件。内置 Apache ECharts 绘图引擎，不与外部进行任何网络通信。数据写在 ```echarts 代码块中。"
+
+#: src/settings.ts:30
+msgid "Auto (follow Joplin)"
+msgstr "自动（跟随 Joplin）"
+
+#: src/settings.ts:32
+#. A chart theme with light colours.
+msgid "Light"
+msgstr "浅色"
+
+#: src/settings.ts:34
+#. A chart theme with dark colours.
+msgid "Dark"
+msgstr "深色"
+
+#: src/settings.ts:36
+msgid "Chart theme"
+msgstr "图表主题"
+
+#: src/settings.ts:43
+msgid "Transparent chart background"
+msgstr "图表背景透明"
+
+#: src/settings.ts:44
+msgid "When a chart uses another theme than the page (for example theme=dark on a light page), its background is always painted."
+msgstr "当图表使用与页面不同的主题时（例如在浅色页面上使用 theme=dark），始终绘制其背景。"
+
+#: src/settings.ts:54
+msgid "Chart height (px)"
+msgstr "图表高度（px）"
+
+#: src/settings.ts:56
+#. Keep height= and ```echarts height=300 as they are.
+msgid "A block can set its own height with height=, for example ```echarts height=300."
+msgstr "每个代码块可以用 height= 设置自己的高度，例如 ```echarts height=300。"
+
+#: src/settings.ts:66
+msgid "Chart width (px)"
+msgstr "图表宽度（px）"
+
+#: src/settings.ts:68
+#. Keep width= as it is.
+msgid "Charts are drawn at this width and shrink in a narrower pane; they are never stretched. A block can set its own width with width=."
+msgstr "图表按此宽度绘制，窗格较窄时会缩小显示，但不会被拉伸。每个代码块可以用 width= 设置自己的宽度。"
+
+#: src/settings.ts:75
+msgid "Match the font size of the note"
+msgstr "图表文字大小与笔记一致"
+
+#: src/settings.ts:76
+msgid "Chart texts use the font size of the note text (15px in the desktop app) instead of 12px. Titles and other texts keep their proportions."
+msgstr "图表文字使用笔记正文的字号（桌面版为 15px），而不是 12px。标题等文字保持比例。"
+
+#: src/settings.ts:85
+msgid "Smallest font size (px)"
+msgstr "最小字号（px）"
+
+#: src/settings.ts:86
+msgid "0 turns it off. Smaller texts, including sizes written in a chart, are enlarged before the chart is laid out. A chart that shrinks in a narrow pane shows smaller texts."
+msgstr "设为 0 表示关闭。更小的文字（包括图表中指定的字号）会在布局前放大。在窄窗格中缩小显示的图表，文字也会更小。"
+
+#: src/settings.ts:93
+msgid "Show the chart toolbar"
+msgstr "显示图表工具栏"
+
+#: src/settings.ts:94
+msgid "Buttons to copy and save the chart (SVG, PNG) and to copy its source, shown when the mouse is over a chart."
+msgstr "鼠标悬停在图表上时，显示复制和保存图表（SVG、PNG）以及复制源代码的按钮。"

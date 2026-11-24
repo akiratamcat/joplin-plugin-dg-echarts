@@ -1,0 +1,23 @@
+name: Translation / 翻訳
+description: A wrong or unnatural translation, or a new language. / 誤った訳や不自然な訳、新しい言語。
+labels: [translation]
+body:
+  - type: input
+    id: language
+    attributes:
+      label: Language / 言語
+      placeholder: e.g. de, fr, zh_TW
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Current text and suggested text / 今の文と、提案する文
+      description: Where is the text shown (settings, error box, toolbar)? What should it say? / どこに出る文ですか（設定画面、エラーの枠、ツールバー）。どう書くべきですか。
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        The current translations are made with generative AI, so corrections by native speakers are very welcome. Contributions are provided under the MIT License.
+        今の翻訳は生成 AI で作ったので、その言語を話す方の訂正をとても歓迎します。寄せられた変更は MIT ライセンスで提供されます。

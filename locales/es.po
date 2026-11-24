@@ -1,0 +1,255 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: dg-echarts\n"
+"Report-Msgid-Bugs-To: https://github.com/akiratamcat/joplin-plugin-dg-echarts/issues\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/actions.ts:116
+msgid "Saved: {path}"
+msgstr "Guardado: {path}"
+
+#: src/actions.ts:119
+msgid "Could not save: {error}"
+msgstr "No se pudo guardar: {error}"
+
+#: src/actions.ts:71
+msgid "Copied the SVG."
+msgstr "SVG copiado."
+
+#: src/actions.ts:71
+msgid "Copied the chart source."
+msgstr "Código fuente del gráfico copiado."
+
+#: src/actions.ts:74
+#: src/actions.ts:87
+msgid "Could not copy: {error}"
+msgstr "No se pudo copiar: {error}"
+
+#: src/actions.ts:84
+msgid "Copied the image (PNG)."
+msgstr "Imagen (PNG) copiada."
+
+#: src/contentScript/input.ts:37
+msgid "The chart is too large ({length} characters; the limit is {limit})."
+msgstr "El gráfico es demasiado grande ({length} caracteres; el límite es {limit})."
+
+#: src/contentScript/input.ts:39
+msgid "The block is empty."
+msgstr "El bloque está vacío."
+
+#: src/contentScript/input.ts:62
+msgid "The chart must be an object ({ ... }) with ECharts options."
+msgstr "El gráfico debe ser un objeto ({ ... }) con opciones de ECharts."
+
+#: src/contentScript/inputGuard.ts:47
+msgid "The chart is nested too deeply (more than {depth} levels)."
+msgstr "El gráfico está anidado a demasiada profundidad (más de {depth} niveles)."
+
+#: src/contentScript/inputGuard.ts:63
+msgid "Maps (geo, series type \"map\") are not supported."
+msgstr "Los mapas (geo, tipo de serie \"map\") no son compatibles."
+
+#: src/contentScript/markdownItPlugin.ts:102
+msgid "The chart cannot be drawn here (no window to sanitise the output)."
+msgstr "El gráfico no se puede dibujar aquí (no hay window para sanear la salida)."
+
+#: src/contentScript/markdownItPlugin.ts:106
+msgid "The ECharts engine could not be loaded: {message}"
+msgstr "No se pudo cargar el motor de ECharts: {message}"
+
+#: src/contentScript/markdownItPlugin.ts:111
+msgid "ECharts could not draw the chart: {message}"
+msgstr "ECharts no pudo dibujar el gráfico: {message}"
+
+#: src/contentScript/markdownItPlugin.ts:182
+msgid "The chart could not be drawn: {message}"
+msgstr "No se pudo dibujar el gráfico: {message}"
+
+#: src/contentScript/markdownItPlugin.ts:62
+msgid "Line {line}"
+msgstr "Línea {line}"
+
+#: src/contentScript/markdownItPlugin.ts:71
+#. Name of a chart for screen readers. "ECharts" is not translated.
+msgid "ECharts chart"
+msgstr "Gráfico de ECharts"
+
+#: src/contentScript/markdownItPlugin.ts:76
+#. Name of a chart for screen readers; {title} is the title of the chart.
+msgid "ECharts chart: {title}"
+msgstr "Gráfico de ECharts: {title}"
+
+#: src/contentScript/markdownItPlugin.ts:86
+msgid "JSON syntax error: {message}"
+msgstr "Error de sintaxis JSON: {message}"
+
+#: src/contentScript/markdownItPlugin.ts:87
+msgid "YAML syntax error: {message}"
+msgstr "Error de sintaxis YAML: {message}"
+
+#: src/contentScript/markdownItPlugin.ts:96
+msgid "Images are not shown (the plugin does not load images)."
+msgstr "Las imágenes no se muestran (el plugin no carga imágenes)."
+
+#: src/contentScript/optionCheck.ts:55
+msgid "series[{index}] is not an object."
+msgstr "series[{index}] no es un objeto."
+
+#: src/contentScript/optionCheck.ts:61
+msgid "series[{index}]: unknown chart type: {type}"
+msgstr "series[{index}]: tipo de gráfico desconocido: {type}"
+
+#: src/contentScript/optionCheck.ts:66
+msgid "series[{index}].data must be an array."
+msgstr "series[{index}].data debe ser un array."
+
+#: src/contentScript/optionCheck.ts:73
+#. xAxis and yAxis are ECharts option names. Do not translate them.
+msgid "Charts such as bar, line and scatter charts need both xAxis and yAxis."
+msgstr "Los gráficos de barras, de líneas y de dispersión, entre otros, necesitan xAxis y yAxis."
+
+#: src/contentScript/optionCheck.ts:79
+msgid "There is nothing to draw (no series of a known chart type)."
+msgstr "No hay nada que dibujar (ninguna serie de un tipo de gráfico conocido)."
+
+#: src/contentScript/toolbar.ts:50
+msgid "Chart tools"
+msgstr "Herramientas del gráfico"
+
+#: src/contentScript/toolbar.ts:52
+msgid "Copy SVG"
+msgstr "Copiar SVG"
+
+#: src/contentScript/toolbar.ts:53
+msgid "Copy PNG"
+msgstr "Copiar PNG"
+
+#: src/contentScript/toolbar.ts:54
+msgid "Save SVG"
+msgstr "Guardar SVG"
+
+#: src/contentScript/toolbar.ts:55
+msgid "Save PNG"
+msgstr "Guardar PNG"
+
+#: src/contentScript/toolbar.ts:56
+msgid "Copy the chart source"
+msgstr "Copiar el código fuente del gráfico"
+
+#: src/index.ts:64
+msgid "Choose a folder to save the chart in"
+msgstr "Elija una carpeta para guardar el gráfico"
+
+#: src/settings.ts:101
+msgid "Colour ECharts blocks in the Markdown editor"
+msgstr "Colorear los bloques de ECharts en el editor Markdown"
+
+#: src/settings.ts:102
+msgid "Keys, strings, numbers and comments of JSON and YAML get colours."
+msgstr "Las claves, cadenas, números y comentarios de JSON y YAML se colorean."
+
+#: src/settings.ts:110
+msgid "Extra language names"
+msgstr "Nombres de lenguaje adicionales"
+
+#: src/settings.ts:112
+#. "chart, json" and "echarts" are language names of code blocks. Keep them as they are.
+msgid "Comma-separated, for example \"chart, json\". \"echarts\" always works."
+msgstr "Separados por comas, por ejemplo \"chart, json\". \"echarts\" siempre funciona."
+
+#: src/settings.ts:122
+msgid "Largest chart (characters)"
+msgstr "Gráfico más grande (caracteres)"
+
+#: src/settings.ts:123
+msgid "Larger blocks are not drawn. While a chart is drawn, the note waits."
+msgstr "Los bloques más grandes no se dibujan. Mientras se dibuja un gráfico, la nota espera."
+
+#: src/settings.ts:133
+msgid "Number of charts kept in the cache"
+msgstr "Número de gráficos conservados en la caché"
+
+#: src/settings.ts:146
+msgid "Bundled third-party software"
+msgstr "Software de terceros incluido"
+
+#: src/settings.ts:147
+msgid "Open the list to see the name, version, license and website of each component. Choosing an item changes nothing. The full license texts are in THIRD_PARTY_NOTICES.md in the plugin package."
+msgstr "Abra la lista para ver el nombre, la versión, la licencia y el sitio web de cada componente. Elegir un elemento no cambia nada. Los textos completos de las licencias están en THIRD_PARTY_NOTICES.md, dentro del paquete del plugin."
+
+#: src/settings.ts:17
+#. Description at the top of the settings section. Keep ```echarts as it is.
+msgid "A plugin that renders Apache ECharts charts. The Apache ECharts rendering engine is built in, and the plugin makes no network connections to the outside. Write the data in ```echarts code blocks."
+msgstr "Un plugin que dibuja gráficos de Apache ECharts. El motor de renderizado de Apache ECharts está integrado, y el plugin no realiza ninguna conexión de red con el exterior. Los datos se escriben en bloques de código ```echarts."
+
+#: src/settings.ts:30
+msgid "Auto (follow Joplin)"
+msgstr "Automático (seguir a Joplin)"
+
+#: src/settings.ts:32
+#. A chart theme with light colours.
+msgid "Light"
+msgstr "Claro"
+
+#: src/settings.ts:34
+#. A chart theme with dark colours.
+msgid "Dark"
+msgstr "Oscuro"
+
+#: src/settings.ts:36
+msgid "Chart theme"
+msgstr "Tema de los gráficos"
+
+#: src/settings.ts:43
+msgid "Transparent chart background"
+msgstr "Fondo del gráfico transparente"
+
+#: src/settings.ts:44
+msgid "When a chart uses another theme than the page (for example theme=dark on a light page), its background is always painted."
+msgstr "Cuando un gráfico usa un tema distinto al de la página (por ejemplo, theme=dark en una página clara), su fondo siempre se pinta."
+
+#: src/settings.ts:54
+msgid "Chart height (px)"
+msgstr "Altura de los gráficos (px)"
+
+#: src/settings.ts:56
+#. Keep height= and ```echarts height=300 as they are.
+msgid "A block can set its own height with height=, for example ```echarts height=300."
+msgstr "Cada bloque puede fijar su propia altura con height=, por ejemplo ```echarts height=300."
+
+#: src/settings.ts:66
+msgid "Chart width (px)"
+msgstr "Anchura de los gráficos (px)"
+
+#: src/settings.ts:68
+#. Keep width= as it is.
+msgid "Charts are drawn at this width and shrink in a narrower pane; they are never stretched. A block can set its own width with width=."
+msgstr "Los gráficos se dibujan con esta anchura y se reducen en un panel más estrecho; nunca se estiran. Cada bloque puede fijar su propia anchura con width=."
+
+#: src/settings.ts:75
+msgid "Match the font size of the note"
+msgstr "Usar el tamaño de letra de la nota"
+
+#: src/settings.ts:76
+msgid "Chart texts use the font size of the note text (15px in the desktop app) instead of 12px. Titles and other texts keep their proportions."
+msgstr "Los textos de los gráficos usan el tamaño de letra del texto de la nota (15px en la aplicación de escritorio) en lugar de 12px. Los títulos y demás textos conservan sus proporciones."
+
+#: src/settings.ts:85
+msgid "Smallest font size (px)"
+msgstr "Tamaño de letra mínimo (px)"
+
+#: src/settings.ts:86
+msgid "0 turns it off. Smaller texts, including sizes written in a chart, are enlarged before the chart is laid out. A chart that shrinks in a narrow pane shows smaller texts."
+msgstr "0 lo desactiva. Los textos más pequeños, incluidos los tamaños escritos en un gráfico, se agrandan antes de componer el gráfico. Un gráfico que se reduce en un panel estrecho muestra textos más pequeños."
+
+#: src/settings.ts:93
+msgid "Show the chart toolbar"
+msgstr "Mostrar la barra de herramientas del gráfico"
+
+#: src/settings.ts:94
+msgid "Buttons to copy and save the chart (SVG, PNG) and to copy its source, shown when the mouse is over a chart."
+msgstr "Botones para copiar y guardar el gráfico (SVG, PNG) y copiar su código fuente, que aparecen al pasar el ratón sobre un gráfico."

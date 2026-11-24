@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security problem / セキュリティの問題
+    url: https://github.com/akiratamcat/joplin-plugin-dg-echarts/security/advisories/new
+    about: Please report security problems privately, not in a public issue. / セキュリティの問題は、公開の Issue ではなく、非公開で報告してください。

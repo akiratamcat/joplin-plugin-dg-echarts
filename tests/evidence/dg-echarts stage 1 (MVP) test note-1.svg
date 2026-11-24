@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg height="400" width="800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 800 400" data-mce-style="display: block; width: 100%; max-width: 800px; height: auto;">
+<rect width="800" height="400" x="0" y="0" fill="none"></rect>
+<path d="M120 320.5L720 320.5" fill="none" stroke="#dbdee4" class="zr12-cls-35"></path>
+<path d="M120 256.5L720 256.5" fill="none" stroke="#dbdee4" class="zr12-cls-35"></path>
+<path d="M120 192.5L720 192.5" fill="none" stroke="#dbdee4" class="zr12-cls-35"></path>
+<path d="M120 129.5L720 129.5" fill="none" stroke="#dbdee4" class="zr12-cls-35"></path>
+<path d="M120 65.5L720 65.5" fill="none" stroke="#dbdee4" class="zr12-cls-35"></path>
+<text text-anchor="middle" style="font-size:16px;font-family:Microsoft YaHei;" y="-8" transform="translate(120 50)" fill="#54555a">売上高（千円）</text>
+<path d="M120 320.5L720 320.5" fill="none" stroke="#54555a" stroke-linecap="round" class="zr12-cls-35"></path>
+<text text-anchor="end" style="font-size:16px;font-family:Microsoft YaHei;" transform="translate(112 320)" fill="#54555a">0</text>
+<text text-anchor="end" style="font-size:16px;font-family:Microsoft YaHei;" transform="translate(112 256.25)" fill="#54555a">50</text>
+<text text-anchor="end" style="font-size:16px;font-family:Microsoft YaHei;" transform="translate(112 192.5)" fill="#54555a">100</text>
+<text text-anchor="end" style="font-size:16px;font-family:Microsoft YaHei;" transform="translate(112 128.75)" fill="#54555a">150</text>
+<text text-anchor="end" style="font-size:16px;font-family:Microsoft YaHei;" transform="translate(112 65)" fill="#54555a">200</text>
+<text text-anchor="middle" style="font-size:16px;font-family:Microsoft YaHei;" y="8" transform="translate(170 328)" fill="#54555a">一月</text>
+<text text-anchor="middle" style="font-size:16px;font-family:Microsoft YaHei;" y="8" transform="translate(370 328)" fill="#54555a">三月</text>
+<text text-anchor="middle" style="font-size:16px;font-family:Microsoft YaHei;" y="8" transform="translate(570 328)" fill="#54555a">May（５月）</text>
+<path d="M135.5 320l69 0l0 -153l-69 0Z" fill="#5070dd" class="zr12-cls-36"></path>
+<path d="M235.5 320l69 0l0 -255l-69 0Z" fill="#5070dd" class="zr12-cls-36"></path>
+<path d="M335.5 320l69 0l0 -191.2l-69 0Z" fill="#5070dd" class="zr12-cls-36"></path>
+<path d="M435.5 320l69 0l0 -102l-69 0Z" fill="#5070dd" class="zr12-cls-36"></path>
+<path d="M535.5 320l69 0l0 -89.2l-69 0Z" fill="#5070dd" class="zr12-cls-36"></path>
+<path d="M635.5 320l69 0l0 -140.2l-69 0Z" fill="#5070dd" class="zr12-cls-36"></path>
+<text text-anchor="middle" style="font-size:16px;font-family:Microsoft YaHei;" y="-8" transform="translate(170 162)" fill="#333" stroke="rgb(255,255,255)" stroke-width="2" paint-order="stroke" stroke-miterlimit="2">120</text>
+<text text-anchor="middle" style="font-size:16px;font-family:Microsoft YaHei;" y="-8" transform="translate(270 60)" fill="#333" stroke="rgb(255,255,255)" stroke-width="2" paint-order="stroke" stroke-miterlimit="2">200</text>
+<text text-anchor="middle" style="font-size:16px;font-family:Microsoft YaHei;" y="-8" transform="translate(370 123.75)" fill="#333" stroke="rgb(255,255,255)" stroke-width="2" paint-order="stroke" stroke-miterlimit="2">150</text>
+<text text-anchor="middle" style="font-size:16px;font-family:Microsoft YaHei;" y="-8" transform="translate(470 213)" fill="#333" stroke="rgb(255,255,255)" stroke-width="2" paint-order="stroke" stroke-miterlimit="2">80</text>
+<text text-anchor="middle" style="font-size:16px;font-family:Microsoft YaHei;" y="-8" transform="translate(570 225.75)" fill="#333" stroke="rgb(255,255,255)" stroke-width="2" paint-order="stroke" stroke-miterlimit="2">70</text>
+<text text-anchor="middle" style="font-size:16px;font-family:Microsoft YaHei;" y="-8" transform="translate(670 174.75)" fill="#333" stroke="rgb(255,255,255)" stroke-width="2" paint-order="stroke" stroke-miterlimit="2">110</text>
+<path d="M-186.3 -5l372.5 0l0 28l-372.5 0Z" transform="translate(400 20)" fill="rgb(0,0,0)" fill-opacity="0" stroke="#3c3c41" stroke-width="0" class="zr12-cls-35"></path>
+<text text-anchor="middle" style="font-size:18px;font-family:Microsoft YaHei;font-weight:bold;" xml:space="preserve" y="9" transform="translate(400 20)" fill="#3c3c41">x月別の売上（全角と半角 ABC123 の混在）</text>
+<style>
+.zr12-cls-35:hover {
+pointer-events:none;
+}
+.zr12-cls-36:hover {
+cursor:pointer;
+fill:rgba(88,123,243,1);
+}
+
+
+
+</style>
+</svg>

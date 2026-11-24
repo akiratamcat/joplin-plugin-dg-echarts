@@ -1,0 +1,255 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: dg-echarts\n"
+"Report-Msgid-Bugs-To: https://github.com/akiratamcat/joplin-plugin-dg-echarts/issues\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/actions.ts:116
+msgid "Saved: {path}"
+msgstr "저장했습니다: {path}"
+
+#: src/actions.ts:119
+msgid "Could not save: {error}"
+msgstr "저장할 수 없습니다: {error}"
+
+#: src/actions.ts:71
+msgid "Copied the SVG."
+msgstr "SVG를 복사했습니다."
+
+#: src/actions.ts:71
+msgid "Copied the chart source."
+msgstr "차트 소스를 복사했습니다."
+
+#: src/actions.ts:74
+#: src/actions.ts:87
+msgid "Could not copy: {error}"
+msgstr "복사할 수 없습니다: {error}"
+
+#: src/actions.ts:84
+msgid "Copied the image (PNG)."
+msgstr "이미지(PNG)를 복사했습니다."
+
+#: src/contentScript/input.ts:37
+msgid "The chart is too large ({length} characters; the limit is {limit})."
+msgstr "차트가 너무 큽니다({length}자, 한도는 {limit}자)."
+
+#: src/contentScript/input.ts:39
+msgid "The block is empty."
+msgstr "블록이 비어 있습니다."
+
+#: src/contentScript/input.ts:62
+msgid "The chart must be an object ({ ... }) with ECharts options."
+msgstr "차트는 ECharts 옵션을 담은 객체({ ... })여야 합니다."
+
+#: src/contentScript/inputGuard.ts:47
+msgid "The chart is nested too deeply (more than {depth} levels)."
+msgstr "차트의 중첩이 너무 깊습니다({depth}단계 초과)."
+
+#: src/contentScript/inputGuard.ts:63
+msgid "Maps (geo, series type \"map\") are not supported."
+msgstr "지도(geo, 시리즈 유형 \"map\")는 지원하지 않습니다."
+
+#: src/contentScript/markdownItPlugin.ts:102
+msgid "The chart cannot be drawn here (no window to sanitise the output)."
+msgstr "여기서는 차트를 그릴 수 없습니다(출력을 정화할 window가 없음)."
+
+#: src/contentScript/markdownItPlugin.ts:106
+msgid "The ECharts engine could not be loaded: {message}"
+msgstr "ECharts 엔진을 불러올 수 없습니다: {message}"
+
+#: src/contentScript/markdownItPlugin.ts:111
+msgid "ECharts could not draw the chart: {message}"
+msgstr "ECharts가 차트를 그리지 못했습니다: {message}"
+
+#: src/contentScript/markdownItPlugin.ts:182
+msgid "The chart could not be drawn: {message}"
+msgstr "차트를 그릴 수 없습니다: {message}"
+
+#: src/contentScript/markdownItPlugin.ts:62
+msgid "Line {line}"
+msgstr "{line}행"
+
+#: src/contentScript/markdownItPlugin.ts:71
+#. Name of a chart for screen readers. "ECharts" is not translated.
+msgid "ECharts chart"
+msgstr "ECharts 차트"
+
+#: src/contentScript/markdownItPlugin.ts:76
+#. Name of a chart for screen readers; {title} is the title of the chart.
+msgid "ECharts chart: {title}"
+msgstr "ECharts 차트: {title}"
+
+#: src/contentScript/markdownItPlugin.ts:86
+msgid "JSON syntax error: {message}"
+msgstr "JSON 구문 오류: {message}"
+
+#: src/contentScript/markdownItPlugin.ts:87
+msgid "YAML syntax error: {message}"
+msgstr "YAML 구문 오류: {message}"
+
+#: src/contentScript/markdownItPlugin.ts:96
+msgid "Images are not shown (the plugin does not load images)."
+msgstr "이미지는 표시하지 않습니다(이 플러그인은 이미지를 불러오지 않습니다)."
+
+#: src/contentScript/optionCheck.ts:55
+msgid "series[{index}] is not an object."
+msgstr "series[{index}]가 객체가 아닙니다."
+
+#: src/contentScript/optionCheck.ts:61
+msgid "series[{index}]: unknown chart type: {type}"
+msgstr "series[{index}]: 알 수 없는 차트 유형: {type}"
+
+#: src/contentScript/optionCheck.ts:66
+msgid "series[{index}].data must be an array."
+msgstr "series[{index}].data는 배열이어야 합니다."
+
+#: src/contentScript/optionCheck.ts:73
+#. xAxis and yAxis are ECharts option names. Do not translate them.
+msgid "Charts such as bar, line and scatter charts need both xAxis and yAxis."
+msgstr "막대, 선, 산점도 등의 차트에는 xAxis와 yAxis가 모두 필요합니다."
+
+#: src/contentScript/optionCheck.ts:79
+msgid "There is nothing to draw (no series of a known chart type)."
+msgstr "그릴 것이 없습니다(알려진 유형의 시리즈가 없음)."
+
+#: src/contentScript/toolbar.ts:50
+msgid "Chart tools"
+msgstr "차트 도구"
+
+#: src/contentScript/toolbar.ts:52
+msgid "Copy SVG"
+msgstr "SVG 복사"
+
+#: src/contentScript/toolbar.ts:53
+msgid "Copy PNG"
+msgstr "PNG 복사"
+
+#: src/contentScript/toolbar.ts:54
+msgid "Save SVG"
+msgstr "SVG 저장"
+
+#: src/contentScript/toolbar.ts:55
+msgid "Save PNG"
+msgstr "PNG 저장"
+
+#: src/contentScript/toolbar.ts:56
+msgid "Copy the chart source"
+msgstr "차트 소스 복사"
+
+#: src/index.ts:64
+msgid "Choose a folder to save the chart in"
+msgstr "차트를 저장할 폴더를 선택하세요"
+
+#: src/settings.ts:101
+msgid "Colour ECharts blocks in the Markdown editor"
+msgstr "Markdown 편집기에서 ECharts 블록에 색을 입힘"
+
+#: src/settings.ts:102
+msgid "Keys, strings, numbers and comments of JSON and YAML get colours."
+msgstr "JSON과 YAML의 키, 문자열, 숫자, 주석에 색을 입힙니다."
+
+#: src/settings.ts:110
+msgid "Extra language names"
+msgstr "추가 언어 이름"
+
+#: src/settings.ts:112
+#. "chart, json" and "echarts" are language names of code blocks. Keep them as they are.
+msgid "Comma-separated, for example \"chart, json\". \"echarts\" always works."
+msgstr "쉼표로 구분합니다(예: \"chart, json\"). \"echarts\"는 항상 사용할 수 있습니다."
+
+#: src/settings.ts:122
+msgid "Largest chart (characters)"
+msgstr "차트의 최대 크기(문자 수)"
+
+#: src/settings.ts:123
+msgid "Larger blocks are not drawn. While a chart is drawn, the note waits."
+msgstr "이보다 큰 블록은 그리지 않습니다. 차트를 그리는 동안 노트는 기다립니다."
+
+#: src/settings.ts:133
+msgid "Number of charts kept in the cache"
+msgstr "캐시에 유지하는 차트 수"
+
+#: src/settings.ts:146
+msgid "Bundled third-party software"
+msgstr "포함된 서드파티 소프트웨어"
+
+#: src/settings.ts:147
+msgid "Open the list to see the name, version, license and website of each component. Choosing an item changes nothing. The full license texts are in THIRD_PARTY_NOTICES.md in the plugin package."
+msgstr "목록을 열면 각 구성 요소의 이름, 버전, 라이선스, 웹사이트를 볼 수 있습니다. 항목을 선택해도 아무것도 바뀌지 않습니다. 라이선스 전문은 플러그인 패키지 안의 THIRD_PARTY_NOTICES.md에 있습니다."
+
+#: src/settings.ts:17
+#. Description at the top of the settings section. Keep ```echarts as it is.
+msgid "A plugin that renders Apache ECharts charts. The Apache ECharts rendering engine is built in, and the plugin makes no network connections to the outside. Write the data in ```echarts code blocks."
+msgstr "Apache ECharts 차트를 그리는 플러그인입니다. Apache ECharts 렌더링 엔진을 내장하고 있으며, 외부와 네트워크 통신을 하지 않습니다. 데이터는 ```echarts 코드 블록에 작성합니다."
+
+#: src/settings.ts:30
+msgid "Auto (follow Joplin)"
+msgstr "자동(Joplin에 맞춤)"
+
+#: src/settings.ts:32
+#. A chart theme with light colours.
+msgid "Light"
+msgstr "밝게"
+
+#: src/settings.ts:34
+#. A chart theme with dark colours.
+msgid "Dark"
+msgstr "어둡게"
+
+#: src/settings.ts:36
+msgid "Chart theme"
+msgstr "차트 테마"
+
+#: src/settings.ts:43
+msgid "Transparent chart background"
+msgstr "차트 배경을 투명하게"
+
+#: src/settings.ts:44
+msgid "When a chart uses another theme than the page (for example theme=dark on a light page), its background is always painted."
+msgstr "차트가 페이지와 다른 테마를 쓰면(예: 밝은 페이지에서 theme=dark) 배경을 항상 칠합니다."
+
+#: src/settings.ts:54
+msgid "Chart height (px)"
+msgstr "차트 높이(px)"
+
+#: src/settings.ts:56
+#. Keep height= and ```echarts height=300 as they are.
+msgid "A block can set its own height with height=, for example ```echarts height=300."
+msgstr "블록마다 height=로 높이를 정할 수 있습니다(예: ```echarts height=300)."
+
+#: src/settings.ts:66
+msgid "Chart width (px)"
+msgstr "차트 너비(px)"
+
+#: src/settings.ts:68
+#. Keep width= as it is.
+msgid "Charts are drawn at this width and shrink in a narrower pane; they are never stretched. A block can set its own width with width=."
+msgstr "차트는 이 너비로 그리고, 창이 좁으면 줄여서 표시합니다. 늘리지는 않습니다. 블록마다 width=로 너비를 정할 수 있습니다."
+
+#: src/settings.ts:75
+msgid "Match the font size of the note"
+msgstr "차트 글자 크기를 노트에 맞춤"
+
+#: src/settings.ts:76
+msgid "Chart texts use the font size of the note text (15px in the desktop app) instead of 12px. Titles and other texts keep their proportions."
+msgstr "차트 글자를 12px 대신 노트 본문의 글자 크기(데스크톱 앱에서는 15px)로 표시합니다. 제목 등은 비율을 유지합니다."
+
+#: src/settings.ts:85
+msgid "Smallest font size (px)"
+msgstr "최소 글자 크기(px)"
+
+#: src/settings.ts:86
+msgid "0 turns it off. Smaller texts, including sizes written in a chart, are enlarged before the chart is laid out. A chart that shrinks in a narrow pane shows smaller texts."
+msgstr "0이면 끕니다. 이보다 작은 글자는 차트에 적은 크기를 포함해 배치 전에 키웁니다. 좁은 창에서 줄여 표시한 차트는 글자도 더 작게 보입니다."
+
+#: src/settings.ts:93
+msgid "Show the chart toolbar"
+msgstr "차트 도구 모음 표시"
+
+#: src/settings.ts:94
+msgid "Buttons to copy and save the chart (SVG, PNG) and to copy its source, shown when the mouse is over a chart."
+msgstr "차트 위에 마우스를 올리면 차트 복사·저장(SVG, PNG)과 소스 복사 버튼을 표시합니다."

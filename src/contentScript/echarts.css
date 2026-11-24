@@ -1,0 +1,140 @@
+/* SPDX-License-Identifier: MIT */
+/* Styles of the ECharts blocks (design 7.1, 7.4, 8.7, 14). */
+
+/* The source stays in the HTML for the Rich Text editor, but is not shown. */
+.joplin-echarts > pre.joplin-source {
+	display: none;
+}
+
+.joplin-echarts {
+	margin: 0.5em 0;
+	/* Do not split a chart over two pages in PDF exports (design 14). */
+	break-inside: avoid;
+	page-break-inside: avoid;
+}
+
+.joplin-echarts-output > svg {
+	/* No gap under an inline SVG (spike stage C). Width: engine.ts fitSvg. */
+	display: block;
+}
+
+.joplin-echarts-align-center .joplin-echarts-output > svg {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.joplin-echarts-align-right .joplin-echarts-output > svg {
+	margin-left: auto;
+}
+
+.joplin-echarts-error {
+	border: 1px solid #d33;
+	border-radius: 4px;
+	color: #d33;
+	padding: 6px 8px;
+	font-size: 0.9em;
+}
+
+.joplin-echarts-error-message {
+	white-space: pre-wrap;
+}
+
+.joplin-echarts-error-line {
+	margin-top: 4px;
+}
+
+.joplin-echarts-excerpt {
+	margin: 4px 0 0;
+	padding: 4px 6px;
+	white-space: pre;
+	overflow-x: auto;
+	font-family: monospace;
+	color: inherit;
+	background: transparent;
+	border: none;
+}
+
+.joplin-echarts-excerpt mark {
+	background: rgba(221, 51, 51, 0.2);
+	color: inherit;
+}
+
+.joplin-echarts-notes {
+	margin-top: 4px;
+	font-size: 0.85em;
+	color: #b8860b;
+}
+
+.joplin-echarts-note {
+	white-space: pre-wrap;
+}
+
+/*
+ * Chart toolbar (design 11), added by the viewer script. Shown when the mouse
+ * is over the chart, when a button has the keyboard focus, or after a tap on
+ * the chart. The buttons stay in the tab order while hidden, so keyboard
+ * users can reach them.
+ */
+.joplin-echarts {
+	position: relative;
+}
+
+.joplin-echarts-toolbar {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	display: flex;
+	gap: 2px;
+	padding: 2px;
+	border-radius: 4px;
+	background: rgba(128, 128, 128, 0.18);
+	opacity: 0;
+	transition: opacity 0.15s;
+	z-index: 1;
+}
+
+.joplin-echarts:hover > .joplin-echarts-toolbar,
+.joplin-echarts-toolbar:focus-within,
+.joplin-echarts-tools-open > .joplin-echarts-toolbar {
+	opacity: 1;
+}
+
+.joplin-echarts-tool {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	padding: 0;
+	border: 1px solid transparent;
+	border-radius: 3px;
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+}
+
+.joplin-echarts-tool:hover {
+	background: rgba(128, 128, 128, 0.25);
+}
+
+.joplin-echarts-tool:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 1px;
+}
+
+/* The text of a button is for screen readers only (aria-label also holds it). */
+.joplin-echarts-tool-label {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+/* Never in print or PDF (design 11). */
+@media print {
+	.joplin-echarts-toolbar {
+		display: none !important;
+	}
+}
