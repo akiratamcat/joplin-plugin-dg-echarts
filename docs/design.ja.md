@@ -4,7 +4,7 @@
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 文書種別       | 基本設計書（初版ドラフト）                                                                                                                                                                                                                                                                      |
 | 対象           | Joplin プラグイン「dg-echarts」（プラグイン ID: `io.github.akiratamcat.dg-echarts`、npm パッケージ名と GitHub のリポジトリ名: `joplin-plugin-dg-echarts`。19章 D-01 で決定）                                                                                                           |
-| 版 | 0.6 |
+| 版 | 0.7 |
 | 作成日         | 2026-11-23                                                                                                                                                                                                                                                                                      |
 | 作成方法       | 本書は生成 AI（Anthropic の Claude）を用いて作成し、作者が出力を確認して修正・承認する（22章）                                                                                                                                                                                                  |
 | 状態 | 試作の2回目で V-08（エクスポートと印刷）を確かめ、描画の方式を Markdown-it の段階で SVG を作る方式に変えた（0.4）。試作の2回目から出た D-12（図の幅）と D-13（印刷の問題の報告）も、作者が決めた。試作の3回目で V-13（エンジンの読み込み）と V-10（設定）を確かめ、V-11 と V-12 の原因が分かった（0.5）。次は段階1（MVP） |
@@ -20,6 +20,7 @@
 | 0.4 | 2026-11-23 | 試作の2回目の結果（`docs/spike-results.ja.md` の 13章、`docs/lessons-learned.ja.md` の 1.1〜1.4節、2.1節）を反映した。**描画の方式を、ビューアスクリプトで描く方式から、Markdown-it のコンテンツスクリプトで SVG を作って HTML に入れる方式に変えた**（ビューアスクリプトで描く方式では、エクスポートで図が出ないため）。これに合わせて 5章、7章、8章、9章、11〜15章を書き直した。テーマの Auto は `options.theme.appearance` で決める。V-08 は確認済みにした。D-04 を書き直した（印刷は Joplin の問題で図が出ないので、PDF のエクスポートで代わりにする）。D-09 は、公式の UMD の圧縮版を実行時に読み込む形にした（V-13）。D-12（図の幅）と D-13（Joplin への報告）を加え、作者がどちらも暫定案に決めた（設定の幅で描いて狭いペインでは縮めて表示する、ブロック単位の `width=` を加える、Joplin には報告せず README で回避の方法を案内する）。V-10〜V-14 を加えた |
 | 0.5 | 2026-11-23 | 試作の3回目の結果（`docs/spike-results.ja.md` の 14章、`docs/lessons-learned.ja.md` の 1.3節、1.5節、2.2〜2.5節）を反映した。V-13 と V-10 を確認済みにした（エンジンは `__non_webpack_require__` と webpack の `node.__dirname: false` で読める。設定を変えると Joplin がノートを描き直す）。ロケールのファイルを `lib/i18n/langXX.js` から `i18n/langXX-obj.js` に変えた（7.5節、10.3節、15章）。V-11 の原因（縁取りのある文字。`textBorderWidth: 0` は効かず、`textBorderColor: 'transparent'` で外せる）と、V-12 の原因（ECharts の `force.edgeLength` の既定値。プラグインでは変えない）を書いた。Dark の図の補助線が見えない問題を 8.5節と V-02 に加えた。V-15（`options.globalSettings` で隠し設定を不要にできるか）を加えた |
 | 0.6 | 2026-11-24 | 段階1 と段階2 の実装の結果を反映した（18章の進み具合）。V-01、V-02 の補助線の色、V-11 を確認済みにした。基本の文字サイズを、モバイル版の設定 `style.viewer.fontSize` ではなく `options.theme.noteViewerFontSize` から読むようにした（8.7節、9章）。描画テストの方法（16章）、カスタム系列が使えないこと（6.3節）、V-14 の jsdom での測定を書いた |
+| 0.7 | 2026-11-24 | 4.1節の CSP の記述を直した。「ノートビューアの CSP」として書いていた値は、リッチテキストエディタ（TinyMCE）の CSP だった。ノートビューアには CSP がなく、Markdown-it のコンテンツスクリプトは主ウィンドウの CSP（`eval` は使えないが、外部への `fetch` と画像は許す）の下で動く（作者の Vega-Lite のプラグインの試作で分かった）。外部の画像をプラグインが二重に止める設計は変わらない。V-06 に書き足した |
 
 本書は、生成 AI を使わない人が読んでも引き継げるように書く。試作の経緯は `docs/spike-results.ja.md`、設計の初版の後に判明した事柄は `docs/lessons-learned.ja.md` に記録する。
 
@@ -124,17 +125,19 @@ Joplin 本体は Mermaid をサポートしており、` ```mermaid ` と書く�
 
 最低対応バージョン（`app_min_version`）は **Joplin 3.1** とする（基準プラグインと同じ根拠。動作確認は最新の安定版で行う）。
 
-**ノートビューアの CSP**（試作の段階C で、Joplin 3.7.24 で実測）:
+**CSP は場所によって違う**（Joplin 3.7.24。作者の Vega-Lite のプラグインの試作の段階C の診断と、Joplin のソースで確かめた。0.7 で直した）:
 
-```text
-default-src 'self' ; img-src 'self' blob: data: * ; media-src 'self' blob: data: * ;
-child-src https://*.youtube.com https://*.youtube-nocookie.com ; object-src 'none' ;
-form-action 'none' ; style-src 'self' 'unsafe-inline' * data:
-```
+| 場所 | CSP | `eval`、`new Function` |
+| --- | --- | --- |
+| Markdown-it のコンテンツスクリプト（Joplin の主ウィンドウ。本プラグインの描画はここで行う） | 主ウィンドウの `packages/app-desktop/index.html` の CSP。`script-src 'self' joplin-plugin://* joplin-content://*`、`connect-src 'self' * http://* https://* ...`、`img-src 'self' blob: data: http://* https://* ...` | 使えない |
+| ノートビューア（`gui/note-viewer/index.html` の iframe。ビューアスクリプトはここで動く） | **なし** | 使える |
+| リッチテキストエディタ（TinyMCE） | `default-src 'self' ; img-src 'self' blob: data: * ; ... object-src 'none' ; form-action 'none' ; style-src 'self' 'unsafe-inline' * data:`（設定 `featureFlag.richText.useStrictContentSecurityPolicy`、既定で有効） | 使えない |
 
-- `eval`、`new Function`、WebAssembly は使えない。Web Worker は作れない（基準の教訓 1.1節）。
-- **`img-src` と `style-src` に `*` があり、外部の画像は CSP では止まらない**。外部の画像を止めるのはプラグインの役目になる（12章）。
-- `style-src` に `'unsafe-inline'` があり、SVG の `style` 属性と `<style>` 要素は効く。
+0.6 までは、リッチテキストエディタの CSP を「ノートビューアの CSP」と書いていた（試作の段階C の記録。`docs/spike-results.ja.md` の 11.2節）。
+
+- エンジンが動くコンテンツスクリプトでは、`eval`、`new Function`、WebAssembly は使えない。Web Worker は作れない（基準の教訓 1.1節）。
+- **外部の画像と通信は、CSP ではほとんど止まらない**。コンテンツスクリプトの CSP は外部への `fetch` と画像を許し、ノートビューアには CSP がない。外部の画像を止めるのはプラグインの役目になる（12章）。本プラグインは、入力の検査と DOMPurify のフックの二重で止めているので、この訂正で設計は変わらない。
+- SVG の `style` 属性と `<style>` 要素は効く（ノートビューアには CSP がなく、リッチテキストエディタの `style-src` にも `'unsafe-inline'` がある）。
 - ページは `about:`、プラグインのファイルは `file:` の URL で読み込まれる。
 
 **Markdown-it のコンテンツスクリプトが動く環境**（試作の2回目で、Joplin 3.7.24 で確認。基準の教訓にはない）:
@@ -721,7 +724,7 @@ joplin-plugin-dg-echarts/
 | V-03 | 中     | `yaml` パッケージをビューアに入れたときの大きさと、別名の上限の効き方                                                               | D-02、13章                                                  |
 | V-04 | − | （0.4 で取り下げ）ペインの幅を変えたときの描き直しの重さと、デバウンスの時間。Markdown-it の段階で描くので、幅の変化に合わせて描き直さない | 8.7節、D-12 |
 | V-05 | 低     | PNG への変換で、日本語の文字が正しく描かれるか                                                                                      | 11章                                                        |
-| V-06 | 低     | Joplin の新しい版で、ノートビューアの CSP が変わらないか（段階C の診断で確かめた CSP の書き方は、基準プラグインの記録と違っていた） | 4.1節、12章                                                 |
+| V-06 | 低 | Joplin の新しい版で、CSP が変わらないか（段階C の診断で確かめた CSP の書き方は、基準プラグインの記録と違っていた。0.7: その値はリッチテキストエディタの CSP で、ノートビューアには CSP がなく、コンテンツスクリプトは主ウィンドウの CSP の下で動くと分かった。4.1節） | 4.1節、12章 |
 | V-07 | 低     | モバイル（v1.x）。コンテンツスクリプトの読み込み方と、エンジンを `require` で読めるか（V-13）も確かめる                            | 14.1節                                                      |
 | V-08 | 済 | **確認済み（2026-11-23。試作の2回目）**。ビューアスクリプトで描く方式では、PDF のエクスポートで図が出なかった。Markdown-it のコンテンツスクリプトで SVG を作る方式では、PDF と HTML のエクスポートで図が出た。印刷は Joplin の問題でどちらの方式でも出ない（`docs/spike-results.ja.md` の 13章） | 描画の方式を変えた（5章）。D-04 を書き直した |
 | V-09 | 中 | 公式の圧縮版で、プラグインの検査（7.4節）がよくある誤りをどこまで拾えるか | 7.4節 |
