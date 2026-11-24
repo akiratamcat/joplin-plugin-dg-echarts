@@ -327,6 +327,8 @@ ECharts と一緒に同梱する予定のもの（ビューアで使う）:
 
 ### 11.2 Joplin 3.7.24 のノートビューアの CSP
 
+> **訂正（2026-11-24）**: この節の CSP は、ノートビューアではなく、リッチテキストエディタ（TinyMCE）の CSP だった。作者の Vega-Lite のプラグインの試作の段階C の診断と、Joplin のソースで分かった。ノートビューアには CSP がない。Markdown-it のコンテンツスクリプト（本プラグインの描画の場所）は主ウィンドウの CSP の下で動き、`eval`、`new Function`、WebAssembly は使えないが、外部への `fetch` と画像は止まらない。下の「外部への `fetch` なども `default-src 'self'` で止まる」は、コンテンツスクリプトとノートビューアには当てはまらない。外部の画像はプラグインが止めるという結論は変わらない。正しい記述は設計書の 4.1節（0.7）。記録として、以下は当時のまま残す。
+
 ```text
 default-src 'self' ; img-src 'self' blob: data: * ; media-src 'self' blob: data: * ;
 child-src https://*.youtube.com https://*.youtube-nocookie.com ; object-src 'none' ;
