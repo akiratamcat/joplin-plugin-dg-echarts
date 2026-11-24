@@ -45,9 +45,10 @@ const SECRET_PATTERNS = [
 	['password or secret', /\b(password|passwd|secret|api[_-]?key|token)\s*[:=]\s*["'][^"'\s]{8,}["']/i],
 	// A real path has a user name after "Users"; examples such as C:\Users\… in the docs do not match.
 	['local path', /[A-Za-z]:[\\/]Users[\\/][^\\/\s….'"`<>*]+[\\/]|\/home\/[a-z][^/\s]*\/|\/Users\/[A-Za-z][^/\s]*\/(Desktop|Documents|Library)/],
-	// dg-echarts: other folders of the PC too (C:\git_repos\..., /c/git_repos/...). A drive
-	// letter, then a folder name; examples such as C:\... or D:\\charts in tests do not match.
-	['local path (folder)', /\b[A-Za-z]:\\(?![\\.…])[^\\\s"'`<>*|]+\\|(^|[\s"'`(])\/[a-z]\/(git_repos|Users)\//m],
+	// dg-echarts: other folders of the PC too. A drive letter and two real folder
+	// names (C:\<folder>\<folder>\, /c/<folder>/<folder>/); examples that end with … or ... in
+	// the docs, and single folders such as D:\\charts in tests, do not match.
+	['local path (folder)', /\b[A-Za-z]:\\(?!Users\\)[^\\\s….'"`<>*|]+\\[^\\\s….'"`<>*|]+\\|(^|[\s"'`(])\/[a-z]\/[^/\s….'"`<>*|]+\/[^/\s….'"`<>*|]+\//m],
 ];
 /** Files whose content is not scanned (bundled third-party code, lock files, saved engine output). */
 const SKIP_CONTENT = [/^vendor\//, /package-lock\.json$/, /^tests\/fixtures\//];
