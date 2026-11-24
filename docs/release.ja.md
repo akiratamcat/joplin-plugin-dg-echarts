@@ -1,6 +1,6 @@
 # リリース手順
 
-設計書 21章の手順の詳細。基準プラグイン（dg-plantuml）の `docs/release.ja.md` と同じ手順で、名前を dg-echarts に置き換えたもの。npm への最初の公開は手で行い、2回目の版から GitHub Actions で公開する（下の「3. 公開」）。
+設計書 21章の手順の詳細。基準プラグイン（dg-plantuml）の `docs/release.ja.md` と同じ手順で、名前を dg-echarts に置き換えたもの。GitHub のリポジトリと npm のパッケージは 2026-11-24 に作り、v1.0.0 を公開した。npm への最初の公開は手で行い、2回目の版から GitHub Actions で公開する（下の「3. 公開」）。
 
 ## 0. GitHub に push する前（毎回）
 
@@ -80,3 +80,4 @@ v1.0.0 の最初の公開で使う手順。`npm` のジョブが失敗したと�
 | 版 | 日付 | 環境 | 範囲 | 結果 | メモ |
 | -- | ---- | ---- | ---- | ---- | ---- |
 | 1.0.0 | 2026-11-23〜24 | Windows 11、Joplin 3.7.24 | 段階1〜4 の手動テスト（`tests/manual/stage1〜4-manual-tests.ja.md`） | OK | 段階ごとの手動テストを、v1.0.0 のリリースの手動テストとした（作者の指示で公開まで進めた）。段階4 の B-8（Tab キーでツールバーに移る）は、作者の判断で確かめていない |
+| 1.0.0 | 2026-11-24 | GitHub、npm | 公開（3.） | OK | GitHub のリポジトリを作り、`main` だけを push した（`feature/mvp` と `spike/*` は push しない）。CI は Linux・macOS・Windows で成功。タグ `v1.0.0` で GitHub Releases のリリースを作った（`.jpl`、`LICENSE`、`THIRD_PARTY_NOTICES` の英日）。npm にはオーナーが手で公開した（3.2。`npm pack --dry-run` でファイル8つ、523.6 kB）。基準プラグインと同じく、先に仮の版 `0.0.0-stage` ができ、約2分後に `latest` が 1.0.0 になった |
