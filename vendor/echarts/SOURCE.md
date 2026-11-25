@@ -57,5 +57,9 @@ See `docs/design.ja.md` (7.5, 10.3).
 5. The input guard (`src/contentScript/inputGuard.ts`) removes known risky
    keys (a deny list). Check the release notes and the option reference for
    new options that load an external URL or take HTML, and add them.
+   The sanitiser (`src/contentScript/sanitize.ts`) keeps a `<style>` only
+   in the line forms zrender writes (`CSS_LINES`); if the tests in
+   `tests/optionCheck.test.ts` fail there, check the new forms before
+   adding them.
 6. Run `npm test` (the package test compares the engine in the `.jpl` with
    this folder) and try the plugin in Joplin.

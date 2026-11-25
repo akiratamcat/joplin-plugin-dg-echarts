@@ -25,6 +25,17 @@ export function jsonErrorLine(message: string, text: string): number | undefined
 	const posMatch = message.match(/at position (\d+)/);
 	if (posMatch) return lineOfPosition(text, Number(posMatch[1]));
 	if (/Unexpected end of JSON input/.test(message)) return lineOfPosition(text, text.length);
+	// Newer V8 (Node 20+, Chrome): `Unexpected token ']', ..."s": [1, 2,]}" is not valid JSON`,
+	// without a position. The quoted part is the text around the error: up to 10
+	// characters before it ("..." when cut) and 10 after it (fixed in 1.0.1).
+	const ctx = message.match(/^Unexpected token '([\s\S]*?)', (\.\.\.)?"([\s\S]*?)"(\.\.\.)? is not valid JSON$/);
+	if (ctx) {
+		const [, token, cutBefore, context, cutAfter] = ctx;
+		const at = text.indexOf(context);
+		if (at < 0) return undefined;
+		const offset = cutBefore ? 10 : cutAfter ? context.length - 10 : context.lastIndexOf(token);
+		return lineOfPosition(text, at + Math.max(0, offset));
+	}
 	return undefined;
 }
 

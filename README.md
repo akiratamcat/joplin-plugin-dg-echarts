@@ -92,6 +92,7 @@ Other Markdown tools ignore these options, so the notes stay portable.
 - **Functions**: the input is never run as JavaScript, so functions cannot be written (`formatter` functions, `renderItem` of `custom` series...). A `formatter` can be a string template such as `"{b}: {c}"`.
 - **Maps**: maps (`geo`, series type `map`) are not available. They are shown as an error.
 - **Images**: neither external images nor `data:` images are loaded (`image://` symbols, image patterns, `graphic` images, legend icons...). When some are removed, a note is shown under the chart.
+- **`url()` in colours**: a CSS `url()` (an image fill) in a colour or background value is not loaded, and that part is not painted. A chart whose `emphasis` colours hold such a value or CSS has no hover highlight. Gradients work with ECharts gradient objects (`type: "linear"` and so on).
 - **Interaction**: charts are static SVG, so tooltips, zoom, legend clicks and other interactions do not work. `tooltip`, `toolbox` and link settings are removed silently.
 - **Printing**: Joplin's print does not show plugin charts (a Joplin issue). Export to PDF and print the PDF instead.
 - **Force layout graphs**: graphs with `layout: "force"` are small with the ECharts defaults. Make `force.edgeLength` and `force.repulsion` larger.
@@ -228,6 +229,7 @@ series:
 - **関数**：入力を JavaScript として実行しないので、関数は書けません（`formatter` の関数、`custom` 系列の `renderItem` など）。`formatter` は `"{b}: {c}"` のような文字列のテンプレートなら使えます。
 - **地図**：地図（`geo`、系列の種類 `map`）は使えません。エラーとして表示します。
 - **画像**：外部の画像も `data:` の画像も読み込みません（`image://` のシンボル、画像のパターン、`graphic` の画像、凡例のアイコンなど）。取り除いた場合は、グラフの下に注意を出します。
+- **色の `url()`**：色や背景の値に CSS の `url()`（画像の塗り）を書いても読み込まず、その部分は塗りません。強調表示の色にそうした値や CSS を書いたグラフは、マウスを乗せたときの強調表示をしません。グラデーションは、ECharts のグラデーションの指定（`type: "linear"` など）で使えます。
 - **操作**：グラフは静的な SVG なので、ツールチップ、ズーム、凡例のクリックなどの操作はできません。`tooltip`、`toolbox`、リンクの設定は、何も言わずに取り除きます。
 - **印刷**：Joplin の印刷では、プラグインのグラフが表示されません（Joplin の問題です）。PDF にエクスポートしてから印刷してください。
 - **力学モデルのグラフ**：`layout: "force"` のグラフは、ECharts の既定では小さく描かれます。`force.edgeLength` と `force.repulsion` を大きくしてください。

@@ -1,4 +1,5 @@
 import { checkOption, SERIES_TYPES } from '../src/contentScript/optionCheck';
+import { isChartCss } from '../src/contentScript/sanitize';
 import { vendorEngine } from './helpers/engine';
 import { SAMPLES } from './helpers/samples';
 
@@ -55,6 +56,9 @@ describe('series types', () => {
 		expect(r.ok).toBe(true);
 		// More than the background rectangle.
 		if (r.ok) expect(r.svg).toMatch(/<path|<text|<circle/);
+		// The sanitiser keeps the hover <style> only in the forms zrender writes
+		// (1.0.1). A new engine that writes other forms fails here.
+		for (const m of (r.ok ? r.svg : '').matchAll(/<style[^>]*><!\[CDATA\[([\s\S]*?)\]\]>/g)) expect(isChartCss(m[1])).toBe(true);
 	});
 
 	test('an unknown type draws nothing', () => {
