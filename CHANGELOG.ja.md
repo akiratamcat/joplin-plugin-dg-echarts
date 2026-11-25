@@ -13,6 +13,8 @@
 
 ### Security
 
+詳しくは [GHSA-78wh-pm82-33cq](https://github.com/akiratamcat/joplin-plugin-dg-echarts/security/advisories/GHSA-78wh-pm82-33cq) を見てください。
+
 - 色や背景の値に CSS の `url()` を書くと（`backgroundColor`、`itemStyle.color`、`borderColor`、`textStyle.color` など）、ノートビューアが外部の URL を読みにいく問題を直しました。グラフの SVG の中を指す `url(#…)`（グラデーションと切り抜き）以外の `url()` は取り除き、その部分は塗りません。
 - `emphasis` の色に CSS を書くと、グラフの強調表示のスタイル（`<style>`）を通じて、ノートに任意の CSS を加えられる問題を直しました（`image-set()` などで外部の URL を読むこともできました）。ECharts が書く形でない `<style>` は空にします。その場合、そのグラフはマウスを乗せたときの強調表示をしません。
 
