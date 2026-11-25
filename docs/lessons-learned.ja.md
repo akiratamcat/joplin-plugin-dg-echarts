@@ -239,3 +239,10 @@
 - CHANGELOG.md の後半に日本語が付くと、リリースノートを作るスクリプトが最後の版の節を「次の `## [`」まで読み、日本語まで取り込んでしまう。次の `## ` の見出しで止めるように直した（`.github/scripts/release-notes.js`）。
 - 説明文（`manifest.json`、`package.json`）と Issue・プルリクエストのひな形は、英語の後に「 / 」で日本語を続けた。
 - **次のプラグインへの示唆**: 英日併記を、手で2か所を直す形にしない。片方から生成し、検査で食い違いを止める。生成した文書を読むほかのスクリプト（リリースノートなど）が、後半の言語を誤って読まないかも確かめる。
+
+### 3.7 Trusted Publishing の登録がないと、npm の公開は 404 で失敗する（1.0.1）
+
+- **何が起きたか**: 1.0.1 のタグを push したところ、リリース用のワークフローの `npm` のジョブが `E404 Not Found - PUT https://registry.npmjs.org/joplin-plugin-dg-echarts` で失敗した。GitHub Releases のリリースはできていた。
+- **原因**: npmjs.com で Trusted Publishing を登録する前に、変数 `NPM_PUBLISH` を `true` にしてタグを push した。npm は、公開の権限がないときも 404 を返す。手元の端末の npm へのログインは、GitHub Actions からの公開には関係しない。また、Trusted Publishing の登録の画面の Allowed actions は、何も選ばないと `npm stage publish` しか許さない。ワークフローは `npm publish` で直接公開するので、「Allow npm publish」を選ぶ必要がある。
+- **対応**: オーナーが Trusted Publishing を登録し（Allowed actions は「Allow npm publish」だけ）、`gh run rerun <実行の ID> --failed` で失敗したジョブだけをやり直して公開できた。タグは作り直さなかった。`docs/release.ja.md` の 3.1 に、Allowed actions の選び方と、404 のときの直し方を書き足した。
+- **次のプラグインへの示唆**: Trusted Publishing の登録が済んだことを、タグを push する前にオーナーに画面で確かめてもらう（登録の有無は、2段階認証のため生成 AI からは確かめられない）。npm の 404 は「パッケージがない」とは限らず、権限がないことを表す。登録の接続は後から変えられないので、値を確かめてから作る。

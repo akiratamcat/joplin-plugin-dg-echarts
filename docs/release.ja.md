@@ -54,10 +54,12 @@ Trusted Publishing は、npm のパッケージを一度公開してからでな
    | Repository | `joplin-plugin-dg-echarts` |
    | Workflow filename | `release.yml`（パスは書かない） |
    | Environment name | 空のまま |
-   | 許可する操作 | `npm publish` も許可する |
+   | Label | 空のままでよい（任意） |
+| Allowed actions | 「Allow npm publish」にチェックを入れる（「Allow npm dist-tag」は不要）。何も選ばないと `npm stage publish` しか許されず、ワークフローの `npm publish` は失敗する |
 
 2. GitHub のリポジトリの変数 `NPM_PUBLISH` を `true` にする（`gh variable set NPM_PUBLISH --body true`）。
 3. いつもどおりタグを push する。リリース用のワークフローの `npm` のジョブが成功し、`npm view joplin-plugin-dg-echarts version` が新しい版になることを確かめる。
+4. `npm` のジョブが `E404 Not Found - PUT https://registry.npmjs.org/joplin-plugin-dg-echarts` で失敗したときは、Trusted Publishing の登録がないか、値が違う（npm は権限がないときも 404 を返す）。登録を直してから、`gh run rerun <実行の ID> --failed` で失敗したジョブだけをやり直す。タグは作り直さない（1.0.1 で実際にあった。下の記録）。
 
 ### 3.2 手で npm に公開する
 
@@ -82,3 +84,4 @@ v1.0.0 の最初の公開で使う手順。`npm` のジョブが失敗したと�
 | 1.0.0 | 2026-11-23〜24 | Windows 11、Joplin 3.7.24 | 段階1〜4 の手動テスト（`tests/manual/stage1〜4-manual-tests.ja.md`） | OK | 段階ごとの手動テストを、v1.0.0 のリリースの手動テストとした（作者の指示で公開まで進めた）。段階4 の B-8（Tab キーでツールバーに移る）は、作者の判断で確かめていない |
 | 1.0.0 | 2026-11-24 | GitHub、npm | 公開（3.） | OK | GitHub のリポジトリを作り、`main` だけを push した（`feature/mvp` と `spike/*` は push しない）。CI は Linux・macOS・Windows で成功。タグ `v1.0.0` で GitHub Releases のリリースを作った（`.jpl`、`LICENSE`、`THIRD_PARTY_NOTICES` の英日）。npm にはオーナーが手で公開した（3.2。`npm pack --dry-run` でファイル8つ、523.6 kB）。基準プラグインと同じく、先に仮の版 `0.0.0-stage` ができ、約2分後に `latest` が 1.0.0 になった |
 | 1.0.1 | 2026-11-25 | Windows 11、Joplin の最新の安定版 | 1.0.1 の手動テスト（`tests/manual/release-1.0.1-manual-tests.ja.md`） | OK | A-1〜E-1 のすべてが期待どおり。色の値の `url()` と強調表示の CSS で `example.com` への要求が出ないこと（開発ツールの Network）、ふつうの図の強調表示とグラデーション、JSON の行番号（4 行目）、PDF のエクスポートを確かめた |
+| 1.0.1 | 2026-11-25 | GitHub、npm | 公開（3.、3.1） | OK | PR #10 をマージし、タグ `v1.0.1` を push した。GitHub Releases のリリースはできたが、`npm` のジョブは `E404`（Trusted Publishing を登録する前に `NPM_PUBLISH` を `true` にしてタグを push したため）。オーナーが npmjs.com で Trusted Publishing を登録し（Allowed actions は「Allow npm publish」）、`gh run rerun --failed` でやり直して成功した（やり直しでは GitHub のリリースのジョブも動いたが、リリースは1つのまま）。`npm view` で `latest` が 1.0.1 になった。非公開の advisory GHSA-78wh-pm82-33cq は、この後オーナーが公開する |
