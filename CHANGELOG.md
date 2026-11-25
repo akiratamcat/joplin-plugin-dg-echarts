@@ -11,6 +11,17 @@ are always listed. The Japanese version (`CHANGELOG.ja.md`) has the same content
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-11-25
+
+### Security
+
+- A CSS `url()` in a colour or background value (`backgroundColor`, `itemStyle.color`, `borderColor`, `textStyle.color` and others) made the note viewer load the external URL. Every `url()` except `url(#…)` (gradients and clips inside the chart's SVG) is now removed, and that part is not painted.
+- CSS in an `emphasis` colour could add any CSS to the note through the chart's hover styles (`<style>`), including loading an external URL with `image-set()` and the like. A `<style>` that is not in the form ECharts writes is now emptied; that chart then has no hover highlight.
+
+### Fixed
+
+- JSON syntax errors whose message has no position in newer Joplin versions (newer Chromium), such as the last comma in `[1, 2,]`, now show the line number and the line in the error box.
+
 ## [1.0.0] - 2026-11-24
 
 First public release.
@@ -43,6 +54,17 @@ First public release.
 利用者が気づく変更（設定、グラフの見た目、対応するグラフ）は必ず書きます。英語版（`CHANGELOG.md`）と同じ内容です。
 
 ### [Unreleased]
+
+### [1.0.1] - 2026-11-25
+
+#### Security
+
+- 色や背景の値に CSS の `url()` を書くと（`backgroundColor`、`itemStyle.color`、`borderColor`、`textStyle.color` など）、ノートビューアが外部の URL を読みにいく問題を直しました。グラフの SVG の中を指す `url(#…)`（グラデーションと切り抜き）以外の `url()` は取り除き、その部分は塗りません。
+- `emphasis` の色に CSS を書くと、グラフの強調表示のスタイル（`<style>`）を通じて、ノートに任意の CSS を加えられる問題を直しました（`image-set()` などで外部の URL を読むこともできました）。ECharts が書く形でない `<style>` は空にします。その場合、そのグラフはマウスを乗せたときの強調表示をしません。
+
+#### Fixed
+
+- JSON の構文の誤りのうち、新しい Joplin（新しい Chromium）で位置の入らないもの（`[1, 2,]` の最後のコンマなど）でも、エラーの枠に行番号と該当行を表示するようにしました。
 
 ### [1.0.0] - 2026-11-24
 

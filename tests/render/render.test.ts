@@ -85,6 +85,34 @@ describe('security (design 12)', () => {
 		expect(run.blocked).toEqual(['https://example.com/x.png']);
 	});
 
+	test('the recorder sees a CSS url() in fill (the check itself works)', async () => {
+		const run = await showInBrowser(browser, '<svg xmlns="http://www.w3.org/2000/svg"><rect fill="url(https://example.com/f.png)" width="10" height="10"/></svg>');
+		expect(run.blocked).toEqual(['https://example.com/f.png']);
+	});
+
+	test('url() in colours and CSS in emphasis colours make no request (1.0.1)', async () => {
+		const option = {
+			backgroundColor: 'url(https://example.com/bg.png)',
+			title: { text: 'T', textStyle: { color: 'url(https://example.com/t.png)' } },
+			xAxis: { type: 'category', data: ['a', 'b'] }, yAxis: {},
+			series: [
+				{ type: 'bar', data: [1, 2], itemStyle: { color: 'url(https://example.com/c.png)', borderColor: 'url(https://example.com/b.png)', borderWidth: 2 } },
+				{ type: 'bar', data: [2, 1], emphasis: { itemStyle: { color: 'red;}svg{background-image:image-set("https://example.com/i.png" 1x)}.a{fill:red' } } },
+			],
+		};
+		const run = await showInBrowser(browser, renderMarkdown(`\`\`\`echarts\n${JSON.stringify(option)}\n\`\`\`\n`));
+		expectClean(run);
+		expect(run.blocks[0].svg).toBe(true);
+	});
+
+	test('the 1.0.1 manual test note: charts, the error on line 4, no request', async () => {
+		const note = fs.readFileSync(path.join(ROOT, 'tests', 'manual', 'release-1.0.1-note.md'), 'utf8');
+		const run = await showInBrowser(browser, renderMarkdown(note));
+		expectClean(run);
+		expect(run.blocks.map((b) => b.svg)).toEqual([true, true, true, true, false]);
+		expect(run.blocks[4].error).toContain('Line 4');
+	});
+
 	test('images in many places make no request', async () => {
 		const option = {
 			backgroundColor: { image: 'https://example.com/bg.png', repeat: 'repeat' },

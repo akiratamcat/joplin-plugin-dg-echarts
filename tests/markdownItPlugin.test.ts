@@ -3,6 +3,7 @@ import MarkdownIt from 'markdown-it';
 import { LruCache } from '../src/contentScript/cache';
 import plugin, { BlockOutput, chartLabel, errorBox, renderFence } from '../src/contentScript/markdownItPlugin';
 import { PluginOptions } from '../src/contentScript/renderConfig';
+import { hasExternalUrl, isChartCss } from '../src/contentScript/sanitize';
 import { KEYS } from '../src/shared/settingKeys';
 import { quietCanvas, vendorEngine } from './helpers/engine';
 
@@ -118,6 +119,58 @@ describe('security (design 12)', () => {
 		expect(root.querySelector('script')).toBeNull();
 		expect(root.querySelector('svg')!.textContent).toContain('<img src=x onerror=alert(1)>');
 		expect(root.querySelector('[onerror]')).toBeNull();
+	});
+
+	test('external url() in colours becomes "none"; url(#id) of gradients and clips stays (1.0.1)', () => {
+		const option = {
+			backgroundColor: 'url(https://example.com/bg.png)',
+			title: { text: 'T', textStyle: { color: 'url(https://example.com/t.png)' } },
+			xAxis: { type: 'category', data: ['a'] }, yAxis: {},
+			series: [
+				{ type: 'bar', data: [1], itemStyle: { color: 'url(https://example.com/c.png)', borderColor: "url( '//example.com/b.png' )", borderWidth: 2 } },
+				{ type: 'line', data: [1], areaStyle: { color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: 'red' }, { offset: 1, color: 'blue' }] } } },
+			],
+		};
+		// The source is kept in the block for editing; only the SVG is shown.
+		const html = dom(render(JSON.stringify(option))).querySelector('svg')!.outerHTML;
+		expect(html).not.toContain('example.com');
+		expect(html).toContain('fill="none"');
+		expect(html).toContain('stroke="none"');
+		expect(html).toMatch(/fill="url\(#zr\d+-g\d+\)"/);
+		expect(html).toMatch(/clip-path="url\(#zr\d+-c\d+\)"/);
+	});
+
+	test('the hover <style> is kept, unless an emphasis colour adds CSS or a url() (1.0.1)', () => {
+		const chart = (emphasis: Record<string, unknown>) => {
+			const style = dom(render(JSON.stringify({ xAxis: { type: 'category', data: ['a'] }, yAxis: {}, series: [{ type: 'bar', data: [1], emphasis }] }))).querySelector('style');
+			return style ? style.textContent ?? '' : null;
+		};
+		expect(chart({ itemStyle: { color: '#123456' } })).toContain('fill:#123456;');
+		const injected = chart({ itemStyle: { color: 'red;}svg{background-image:image-set("https://example.com/i.png" 1x)}.a{fill:red' } });
+		expect(injected).toBe('');
+		expect(chart({ itemStyle: { borderColor: 'url(https://example.com/e.png)' } })).toBe('');
+	});
+
+	test('hasExternalUrl', () => {
+		expect(hasExternalUrl('url(#zr0-g0)')).toBe(false);
+		expect(hasExternalUrl('url( "#clip0" )')).toBe(false);
+		expect(hasExternalUrl('red')).toBe(false);
+		expect(hasExternalUrl('url(https://x)')).toBe(true);
+		expect(hasExternalUrl('URL(data:image/png;base64,AAA)')).toBe(true);
+		expect(hasExternalUrl('url(#a) url(x.png)')).toBe(true);
+		expect(hasExternalUrl(String.raw`u\72 l(https://x)`)).toBe(true);
+		expect(hasExternalUrl('u/**/rl(x)')).toBe(true);
+	});
+
+	test('isChartCss', () => {
+		const css = '\n.zr0-cls-1 {\nanimation:zr0-ani-0 1s cubic-bezier(0.65,0,0.35,1) both;\n}\n.zr0-cls-2:hover {\ncursor:pointer;\nfill:url(#zr0-g1);\n}\n'
+			+ '@keyframes zr0-ani-0 {\n0% {\nd:path("M106.5 220l207 0l0 0l-207 0Z");\n}\n}\n';
+		expect(isChartCss(css)).toBe(true);
+		expect(isChartCss('.zr0-cls-2:hover {\nfill:red;}svg{fill:blue;\n}')).toBe(false);
+		expect(isChartCss('.zr0-cls-2:hover {\nfill:red;\n}\nsvg {\nfill:blue;\n}')).toBe(false);
+		expect(isChartCss('.zr0-cls-2:hover {\nbackground:image-set("https://x" 1x);\n}')).toBe(false);
+		expect(isChartCss('.zr0-cls-2:hover {\nfill:url(https://x);\n}')).toBe(false);
+		expect(isChartCss('@import "https://x";')).toBe(false);
 	});
 
 	test('tooltip and toolbox are removed without a note', () => {

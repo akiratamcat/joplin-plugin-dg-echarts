@@ -81,3 +81,4 @@ v1.0.0 の最初の公開で使う手順。`npm` のジョブが失敗したと�
 | -- | ---- | ---- | ---- | ---- | ---- |
 | 1.0.0 | 2026-11-23〜24 | Windows 11、Joplin 3.7.24 | 段階1〜4 の手動テスト（`tests/manual/stage1〜4-manual-tests.ja.md`） | OK | 段階ごとの手動テストを、v1.0.0 のリリースの手動テストとした（作者の指示で公開まで進めた）。段階4 の B-8（Tab キーでツールバーに移る）は、作者の判断で確かめていない |
 | 1.0.0 | 2026-11-24 | GitHub、npm | 公開（3.） | OK | GitHub のリポジトリを作り、`main` だけを push した（`feature/mvp` と `spike/*` は push しない）。CI は Linux・macOS・Windows で成功。タグ `v1.0.0` で GitHub Releases のリリースを作った（`.jpl`、`LICENSE`、`THIRD_PARTY_NOTICES` の英日）。npm にはオーナーが手で公開した（3.2。`npm pack --dry-run` でファイル8つ、523.6 kB）。基準プラグインと同じく、先に仮の版 `0.0.0-stage` ができ、約2分後に `latest` が 1.0.0 になった |
+| 1.0.1 | 2026-11-25 | Windows 11、Joplin の最新の安定版 | 1.0.1 の手動テスト（`tests/manual/release-1.0.1-manual-tests.ja.md`） | OK | A-1〜E-1 のすべてが期待どおり。色の値の `url()` と強調表示の CSS で `example.com` への要求が出ないこと（開発ツールの Network）、ふつうの図の強調表示とグラデーション、JSON の行番号（4 行目）、PDF のエクスポートを確かめた |

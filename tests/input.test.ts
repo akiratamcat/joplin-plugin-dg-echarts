@@ -77,3 +77,26 @@ describe('line helpers', () => {
 		expect(jsonErrorLine('something else', text)).toBeUndefined();
 	});
 });
+
+describe('JSON error line without a position (newer V8, 1.0.1)', () => {
+	const lineOf = (text: string) => {
+		try {
+			JSON.parse(text);
+		} catch (e) {
+			return jsonErrorLine((e as Error).message, text);
+		}
+		return undefined;
+	};
+
+	test('the context in the message gives the line', () => {
+		expect(lineOf('{\n  "xAxis": {},\n  "series": [{"type": "bar", "data": [1, 2,]}]\n}')).toBe(3);
+		expect(lineOf('{\n"a": tru\n}')).toBe(2);
+		expect(lineOf(`{\n${'"k": 1,\n'.repeat(5)}"z" 2}`)).toBe(7);
+		expect(lineOf('{"a": 1,,}')).toBe(1);
+	});
+
+	test('messages from other engines', () => {
+		expect(jsonErrorLine("Unexpected token ']', ...\"not here\"... is not valid JSON", 'abc')).toBeUndefined();
+		expect(jsonErrorLine('JSON.parse: unexpected character at line 4 column 2 of the JSON data', 'a')).toBeUndefined();
+	});
+});

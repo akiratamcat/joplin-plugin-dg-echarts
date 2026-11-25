@@ -1,6 +1,6 @@
 {
   "name": "joplin-plugin-dg-echarts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Render Apache ECharts charts in Joplin with a bundled engine. No external server, no network access. / Apache ECharts のグラフを、描画エンジン内蔵・外部通信なしで Joplin に表示します。",
   "author": "akira tamcat",
   "license": "MIT",
