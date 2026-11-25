@@ -4,6 +4,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { Browser } from 'playwright-core';
+import { INJECTION_FORMS, injectedOption } from '../helpers/cssInjection';
+import { SAMPLES } from '../helpers/samples';
 import { launchBrowser, PageRun, renderMarkdown, ROOT, showInBrowser } from './renderPage';
 
 const NOTE = fs.readFileSync(path.join(ROOT, 'tests', 'manual', 'mvp-note.md'), 'utf8');
@@ -111,6 +113,24 @@ describe('security (design 12)', () => {
 		expectClean(run);
 		expect(run.blocks.map((b) => b.svg)).toEqual([true, true, true, true, false]);
 		expect(run.blocks[4].error).toContain('Line 4');
+	});
+
+	test('the 1.0.2 manual test note: four charts, no request', async () => {
+		const note = fs.readFileSync(path.join(ROOT, 'tests', 'manual', 'release-1.0.2-note.md'), 'utf8');
+		const html = renderMarkdown(note);
+		const run = await showInBrowser(browser, html);
+		expectClean(run);
+		expect(run.blocks.map((b) => b.svg)).toEqual([true, true, true, true]);
+		// The ordinary fonts of chart 4 stay.
+		expect(html).toContain("font-family:'Times New Roman', serif");
+	});
+
+	test.each(INJECTION_FORMS)('CSS in the string style options of every series type makes no request (%s, 1.0.2)', async (form) => {
+		const blocks = Object.keys(SAMPLES).map((type) => `\`\`\`echarts\n${JSON.stringify(injectedOption(type, form))}\n\`\`\`\n`);
+		const run = await showInBrowser(browser, renderMarkdown(blocks.join('\n')));
+		expectClean(run);
+		// Most charts are still drawn (a few series types refuse some of the values).
+		expect(run.blocks.filter((b) => b.svg).length).toBeGreaterThanOrEqual(Object.keys(SAMPLES).length - 3);
 	});
 
 	test('images in many places make no request', async () => {

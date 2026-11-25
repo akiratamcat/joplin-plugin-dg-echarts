@@ -9,6 +9,14 @@
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-11-25
+
+### Security
+
+詳しくは [GHSA-r23f-wr7q-gqjq](https://github.com/akiratamcat/joplin-plugin-dg-echarts/security/advisories/GHSA-r23f-wr7q-gqjq) を見てください。
+
+- 文字の書体・太さ・斜体の値（`fontFamily`、`fontWeight`、`fontStyle`）に CSS を書くと、ノートビューアが外部の URL を読む問題を直しました（1.0.1 では直っていませんでした）。ECharts はこれらの値を SVG の `style` 属性にそのまま書くので、`;` の後に `image-set()` などで外部を読む宣言を加えられました。`style` 属性、色の属性、強調表示のスタイルでは、外部を読まない CSS の関数（`rgb()`、`rgba()`、`cubic-bezier()`、変形など）以外の関数を含む宣言を取り除きます。
+
 ## [1.0.1] - 2026-11-25
 
 ### Security

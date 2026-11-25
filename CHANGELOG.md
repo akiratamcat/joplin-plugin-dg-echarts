@@ -11,6 +11,14 @@ are always listed. The Japanese version (`CHANGELOG.ja.md`) has the same content
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-11-25
+
+### Security
+
+See [GHSA-r23f-wr7q-gqjq](https://github.com/akiratamcat/joplin-plugin-dg-echarts/security/advisories/GHSA-r23f-wr7q-gqjq) for details.
+
+- CSS in a font family, weight or style value (`fontFamily`, `fontWeight`, `fontStyle`) made the note viewer load an external URL (1.0.1 did not fix this). ECharts writes these values into the SVG `style` attribute as they are, so a declaration that loads a URL with `image-set()` and the like could be added after `;`. In style attributes, colour attributes and hover styles, a declaration with any CSS function other than those that load nothing (`rgb()`, `rgba()`, `cubic-bezier()`, transforms and so on) is now removed.
+
 ## [1.0.1] - 2026-11-25
 
 ### Security
@@ -56,6 +64,14 @@ First public release.
 利用者が気づく変更（設定、グラフの見た目、対応するグラフ）は必ず書きます。英語版（`CHANGELOG.md`）と同じ内容です。
 
 ### [Unreleased]
+
+### [1.0.2] - 2026-11-25
+
+#### Security
+
+詳しくは [GHSA-r23f-wr7q-gqjq](https://github.com/akiratamcat/joplin-plugin-dg-echarts/security/advisories/GHSA-r23f-wr7q-gqjq) を見てください。
+
+- 文字の書体・太さ・斜体の値（`fontFamily`、`fontWeight`、`fontStyle`）に CSS を書くと、ノートビューアが外部の URL を読む問題を直しました（1.0.1 では直っていませんでした）。ECharts はこれらの値を SVG の `style` 属性にそのまま書くので、`;` の後に `image-set()` などで外部を読む宣言を加えられました。`style` 属性、色の属性、強調表示のスタイルでは、外部を読まない CSS の関数（`rgb()`、`rgba()`、`cubic-bezier()`、変形など）以外の関数を含む宣言を取り除きます。
 
 ### [1.0.1] - 2026-11-25
 
