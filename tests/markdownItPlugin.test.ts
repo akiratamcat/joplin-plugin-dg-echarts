@@ -3,7 +3,7 @@ import MarkdownIt from 'markdown-it';
 import { LruCache } from '../src/contentScript/cache';
 import plugin, { BlockOutput, chartLabel, errorBox, renderFence } from '../src/contentScript/markdownItPlugin';
 import { PluginOptions } from '../src/contentScript/renderConfig';
-import { hasExternalUrl, isChartCss } from '../src/contentScript/sanitize';
+import { cleanStyle, hasExternalUrl, isChartCss, isSafeCssValue } from '../src/contentScript/sanitize';
 import { KEYS } from '../src/shared/settingKeys';
 import { quietCanvas, vendorEngine } from './helpers/engine';
 
@@ -151,6 +151,34 @@ describe('security (design 12)', () => {
 		expect(chart({ itemStyle: { borderColor: 'url(https://example.com/e.png)' } })).toBe('');
 	});
 
+	test('CSS added to a font option is removed from the style attribute; the font stays (1.0.2)', () => {
+		const inj = "sans-serif;mask-image:image-set('https://example.com/m.png' 1x)";
+		const option = (font: Record<string, string>) => JSON.stringify({ title: { text: 'T', textStyle: font }, xAxis: { type: 'category', data: ['a'] }, yAxis: {}, series: [{ type: 'bar', data: [1] }] });
+		const fonts: Record<string, string>[] = [{ fontFamily: inj }, { fontWeight: inj }, { fontStyle: inj }];
+		for (const font of fonts) {
+			const svg = dom(render(option(font))).querySelector('svg')!.outerHTML;
+			expect(svg).not.toContain('example.com');
+			expect(svg).not.toContain('mask-image');
+		}
+		const title = [...dom(render(option({ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 'bold' }))).querySelectorAll('text')].find((t) => t.textContent === 'T')!;
+		expect(title.getAttribute('style')).toContain("font-family:'Noto Sans JP', sans-serif");
+		expect(title.getAttribute('style')).toContain('font-weight:bold');
+	});
+
+	test('isSafeCssValue and cleanStyle', () => {
+		expect(isSafeCssValue('rgba(0,0,0,0.5)')).toBe(true);
+		expect(isSafeCssValue('animation:zr0-ani-0 1s cubic-bezier(0.65,0,0.35,1) both;')).toBe(true);
+		expect(isSafeCssValue('url(#zr0-g0)')).toBe(true);
+		expect(isSafeCssValue("image-set('https://x' 1x)")).toBe(false);
+		expect(isSafeCssValue("-webkit-image-set('x' 1x)")).toBe(false);
+		expect(isSafeCssValue("image('x')")).toBe(false);
+		expect(isSafeCssValue('(x)')).toBe(false);
+		expect(isSafeCssValue('url(https://x)')).toBe(false);
+		expect(isSafeCssValue(String.raw`image-set\28 'x' 1x)`)).toBe(false);
+		expect(cleanStyle('font-size:12px;font-family:sans-serif;mask-image:image-set(\'x\' 1x);cursor:image-set(\'y\' 1x),auto')).toBe('font-size:12px;font-family:sans-serif');
+		expect(cleanStyle('mask-image:image-set(\'x\' 1x)')).toBe('');
+	});
+
 	test('hasExternalUrl', () => {
 		expect(hasExternalUrl('url(#zr0-g0)')).toBe(false);
 		expect(hasExternalUrl('url( "#clip0" )')).toBe(false);
@@ -171,6 +199,9 @@ describe('security (design 12)', () => {
 		expect(isChartCss('.zr0-cls-2:hover {\nbackground:image-set("https://x" 1x);\n}')).toBe(false);
 		expect(isChartCss('.zr0-cls-2:hover {\nfill:url(https://x);\n}')).toBe(false);
 		expect(isChartCss('@import "https://x";')).toBe(false);
+		// A function that loads a file without quotes or url() (1.0.2).
+		expect(isChartCss('.zr0-cls-2:hover {\ncursor:-webkit-image-set(x 1x),auto;\n}')).toBe(false);
+		expect(isChartCss('.zr0-cls-2:hover {\nfill:rgba(0,0,0,1);\n}')).toBe(true);
 	});
 
 	test('tooltip and toolbox are removed without a note', () => {
